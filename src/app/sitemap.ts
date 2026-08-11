@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { company } from "@/content/company";
 import { href, pageKeys } from "@/content/pages";
-import { htmlLang, locales } from "@/lib/i18n";
+import { hreflang, locales } from "@/lib/i18n";
 
 /** All 18 routes, each carrying its hreflang alternates. */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: key === "home" ? 1 : 0.8,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((code) => [htmlLang[code], `${company.siteUrl}${href(code, key)}`]),
+          locales.map((code) => [hreflang[code], `${company.siteUrl}${href(code, key)}`]),
         ),
       },
     })),

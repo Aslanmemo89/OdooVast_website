@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { BreadcrumbLd } from "@/components/BreadcrumbLd";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
@@ -29,6 +30,7 @@ export function PageShell({
       <main id="main">{children}</main>
       <Footer locale={locale} />
       <WhatsAppFab locale={locale} />
+      <BreadcrumbLd locale={locale} current={current} />
     </>
   );
 }

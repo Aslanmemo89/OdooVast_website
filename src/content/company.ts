@@ -82,6 +82,12 @@ export const company = {
     link: "https://www.google.com/maps/search/?api=1&query=Zanyari+Tower%2C+Erbil%2C+Iraq",
   },
 
+  /** TODO: paste the Google Search Console meta-tag token here (the value of
+   *  content="..." from the HTML-tag verification method) and the tag renders
+   *  on every page automatically. null = no tag. Not needed if verification
+   *  was done via the DNS TXT record instead. */
+  googleSiteVerification: null as string | null,
+
   social: {
     /** Public company page. The numeric id resolves for any visitor.
      *  TODO: swap for the vanity URL (linkedin.com/company/odoovast) once claimed. */

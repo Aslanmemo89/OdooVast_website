@@ -39,6 +39,17 @@ export const htmlLang: Record<Locale, string> = {
   ckb: "ckb-IQ",
 };
 
+/**
+ * hreflang codes for search engines. Google only recognises ISO 639-1
+ * languages there, and Sorani's 639-1 code is "ku" — so annotations use
+ * ku-IQ while the page itself stays correctly tagged ckb-IQ.
+ */
+export const hreflang: Record<Locale, string> = {
+  en: "en",
+  ar: "ar-IQ",
+  ckb: "ku-IQ",
+};
+
 /** Each language named in its own script, for the switcher. */
 export const localeName: Record<Locale, string> = {
   en: "English",

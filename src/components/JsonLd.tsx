@@ -24,6 +24,13 @@ export function JsonLd({ locale }: { locale: Locale }) {
     founder: { "@type": "Person", name: company.founder },
     telephone: company.phoneE164,
     email: company.email,
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: company.phoneE164,
+      contactType: "customer service",
+      areaServed: company.address.countryCode,
+      availableLanguage: locales.map((code) => htmlLang[code]),
+    },
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",

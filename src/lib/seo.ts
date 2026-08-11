@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { company } from "@/content/company";
 import { href, pageMeta, type PageKey } from "@/content/pages";
-import { htmlLang, locales, t, type Locale } from "@/lib/i18n";
+import { hreflang, locales, t, type Locale } from "@/lib/i18n";
 
 const OG_LOCALE: Record<Locale, string> = {
   en: "en_US",
@@ -22,7 +22,7 @@ export function buildMetadata(locale: Locale, key: PageKey): Metadata {
 
   const languages: Record<string, string> = { "x-default": href("en", key) };
   for (const code of locales) {
-    languages[htmlLang[code]] = href(code, key);
+    languages[hreflang[code]] = href(code, key);
   }
 
   return {

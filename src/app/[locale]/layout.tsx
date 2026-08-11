@@ -58,6 +58,9 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   // No `formatDetection` on purpose: Next only ever emits "=no" for the keys
   // it is given, and we want iOS to keep auto-linking phone numbers in prose.
+  ...(company.googleSiteVerification
+    ? { verification: { google: company.googleSiteVerification } }
+    : {}),
 };
 
 export const viewport: Viewport = {
