@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+.env*
+.vercel
+.DS_Store
+
+# The full branding package (100 MB of PDFs/PPTX) lives outside the repo.
+# Everything the site needs from it has been copied into public/ and src/app/.
+OdooVast_Branding/
