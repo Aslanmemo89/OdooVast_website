@@ -7,8 +7,9 @@ import { PageShell } from "@/components/PageShell";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { Timeline } from "@/components/Timeline";
+import { company } from "@/content/company";
 import { about, home } from "@/content/pages";
-import { localeFromParam, t, tl } from "@/lib/i18n";
+import { localeFromParam, t, tl, ui } from "@/lib/i18n";
 import { buildMetadata } from "@/lib/seo";
 
 type Props = { params: { locale: string } };
@@ -32,6 +33,18 @@ export default function AboutPage({ params }: Props) {
           {tl(about.storyBody, locale).map((paragraph) => (
             <p key={paragraph.slice(0, 32)}>{paragraph}</p>
           ))}
+        </div>
+        <div className="btn-row">
+          <a
+            className="btn btn--secondary"
+            href={company.profilePdf}
+            download
+            type="application/pdf"
+          >
+            <Icon name="download" size={18} />
+            {t(ui.ctaDownloadProfile, locale)}
+          </a>
+          <span className="btn-row__meta">{t(ui.labelProfileSize, locale)}</span>
         </div>
       </Section>
 

@@ -102,6 +102,12 @@ export const ui = {
     ckb: "لەسەر ئەم خزمەتگوزارییە بدوێ",
   },
   ctaMore: { en: "Details", ar: "التفاصيل", ckb: "وردەکاری" },
+  ctaDownloadProfile: {
+    en: "Download the company profile (PDF)",
+    ar: "حمّل الملف التعريفي للشركة (PDF)",
+    ckb: "پرۆفایلی کۆمپانیا دابگرە (PDF)",
+  },
+  labelProfileSize: { en: "12 pages · 1.7 MB", ar: "12 صفحة · 1.7 م.ب", ckb: "١٢ لاپەڕە · ١.٧ MB" },
   ctaDirections: { en: "Open in Google Maps", ar: "افتح في خرائط جوجل", ckb: "لە Google Maps بیکەرەوە" },
 
   labelIncludes: { en: "What is included", ar: "ما الذي تتضمنه", ckb: "چی لەخۆ دەگرێت" },

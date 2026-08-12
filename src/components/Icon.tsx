@@ -247,6 +247,15 @@ const glyphs = {
     ),
   },
   menu: { body: <path d="M4 7h16M4 12h16M4 17h16" /> },
+  download: {
+    body: (
+      <>
+        <path d="M12 3.5v11" />
+        <path d="m7 10 5 5 5-5" />
+        <path d="M4 20.5h16" />
+      </>
+    ),
+  },
   alert: {
     body: (
       <>

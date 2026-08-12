@@ -91,6 +91,11 @@ export function Footer({ locale }: { locale: Locale }) {
                 </a>
               </li>
               <li>{t(company.hours, locale)}</li>
+              <li>
+                <a href={company.profilePdf} download type="application/pdf">
+                  {t(ui.ctaDownloadProfile, locale)}
+                </a>
+              </li>
             </ul>
           </div>
         </div>

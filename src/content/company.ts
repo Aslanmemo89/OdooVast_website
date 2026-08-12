@@ -82,6 +82,9 @@ export const company = {
     link: "https://www.google.com/maps/search/?api=1&query=Zanyari+Tower%2C+Erbil%2C+Iraq",
   },
 
+  /** The 12-page company profile catalog, served from public/. ~1.7 MB. */
+  profilePdf: "/odoovast-company-profile.pdf",
+
   /** TODO: paste the Google Search Console meta-tag token here (the value of
    *  content="..." from the HTML-tag verification method) and the tag renders
    *  on every page automatically. null = no tag. Not needed if verification
