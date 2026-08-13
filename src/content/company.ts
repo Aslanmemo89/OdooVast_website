@@ -45,10 +45,12 @@ export const company = {
   whatsapp: "9647512399899",
 
   address: {
+    /** What visitors see (owner wants it short). The detailed street address
+     *  below still feeds the JSON-LD so Google can match the GBP listing. */
     full: {
-      en: "Zanyari Tower, Floor 34, Office 3409 — Erbil, Iraq",
-      ar: "برج زانياري، الطابق 34، مكتب 3409 — أربيل، العراق",
-      ckb: "تاوەری زانیاری، نهۆمی ٣٤، ژووری ٣٤٠٩ — هەولێر، عێراق",
+      en: "Erbil, Iraq",
+      ar: "أربيل، العراق",
+      ckb: "هەولێر، عێراق",
     } satisfies T,
     street: {
       en: "Zanyari Tower, Floor 34, Office 3409",
