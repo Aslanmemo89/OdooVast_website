@@ -88,9 +88,9 @@ export const pageMeta: Record<PageKey, PageMeta> = {
       ckb: "کارەکانمان — ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast",
     },
     description: {
-      en: "Companies running Odoo with OdooVast — Alnajar Steel, Salar Jamal, Diamond Parda Company and Vendor for General Trading. Detailed case studies are on the way.",
-      ar: "شركات تدير أعمالها بنظام Odoo مع OdooVast — Alnajar Steel وSalar Jamal وDiamond Parda وVendor للتجارة العامة. دراسات الحالة التفصيلية قريباً.",
-      ckb: "ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast — Alnajar Steel، Salar Jamal، Diamond Parda و Vendor. نموونە پڕۆژە وردەکان لە ڕێگادان.",
+      en: "Companies running Odoo with OdooVast — Alnajar Steel, Salar Jamal, Diamond Parda Company, Vendor for General Trading, Som and Aljawahir. Detailed case studies are on the way.",
+      ar: "شركات تدير أعمالها بنظام Odoo مع OdooVast — Alnajar Steel وSalar Jamal وDiamond Parda وVendor للتجارة العامة وSom وAljawahir. دراسات الحالة التفصيلية قريباً.",
+      ckb: "ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast — Alnajar Steel، Salar Jamal، Diamond Parda، Vendor، Som و Aljawahir. نموونە پڕۆژە وردەکان لە ڕێگادان.",
     },
   },
   contact: {

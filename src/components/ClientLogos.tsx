@@ -20,7 +20,7 @@ export function ClientLogos({ locale }: { locale: Locale }) {
           </span>
           {/* Brand names keep their own (Latin) branding in every language. */}
           <p className="client__name ltr">{client.name}</p>
-          <p className="client__sector">{t(client.sector, locale)}</p>
+          {client.sector ? <p className="client__sector">{t(client.sector, locale)}</p> : null}
         </li>
       ))}
     </ul>
