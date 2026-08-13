@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ClientLogos } from "@/components/ClientLogos";
 import { CtaBand } from "@/components/CtaBand";
 import { Icon } from "@/components/Icon";
 import { PageHead } from "@/components/PageHead";
@@ -22,6 +23,15 @@ export default function PortfolioPage({ params }: Props) {
   return (
     <PageShell locale={locale} current="portfolio">
       <PageHead locale={locale} title={portfolioPage.h1} lead={portfolioPage.lead} />
+
+      <Section labelledBy="clients">
+        <div className="section__head">
+          <h2 id="clients">{t(portfolioPage.clientsTitle, locale)}</h2>
+        </div>
+        <Reveal>
+          <ClientLogos locale={locale} />
+        </Reveal>
+      </Section>
 
       <Section>
         <div className="notice" role="note">

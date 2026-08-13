@@ -83,14 +83,14 @@ export const pageMeta: Record<PageKey, PageMeta> = {
   },
   portfolio: {
     title: {
-      en: "Portfolio — OdooVast case studies",
-      ar: "أعمالنا — دراسات حالة من OdooVast",
-      ckb: "کارەکانمان — نموونەی پڕۆژەکانی OdooVast",
+      en: "Portfolio — companies that run Odoo with OdooVast",
+      ar: "أعمالنا — شركات تدير أعمالها بـ Odoo مع OdooVast",
+      ckb: "کارەکانمان — ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast",
     },
     description: {
-      en: "Case studies from OdooVast. We publish a project only once the client has approved it by name — this page is being prepared.",
-      ar: "دراسات حالة من OdooVast. لا ننشر أي مشروع إلا بموافقة العميل على ذكر اسمه — هذه الصفحة قيد الإعداد.",
-      ckb: "نموونەی پڕۆژەکانی OdooVast. تەنها ئەو پڕۆژانە بڵاو دەکەینەوە کە کڕیارەکە بە ناو ڕەزامەندی دەربڕیوە — ئەم لاپەڕەیە لە ئامادەکردندایە.",
+      en: "Companies running Odoo with OdooVast — Alnajar Steel, Salar Jamal, Diamond Parda Company and Vendor for General Trading. Detailed case studies are on the way.",
+      ar: "شركات تدير أعمالها بنظام Odoo مع OdooVast — Alnajar Steel وSalar Jamal وDiamond Parda وVendor للتجارة العامة. دراسات الحالة التفصيلية قريباً.",
+      ckb: "ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast — Alnajar Steel، Salar Jamal، Diamond Parda و Vendor. نموونە پڕۆژە وردەکان لە ڕێگادان.",
     },
   },
   contact: {
@@ -178,6 +178,12 @@ export const home = {
       },
     },
   ] satisfies Highlight[],
+
+  clientsTitle: {
+    en: "Some of our clients",
+    ar: "من عملائنا",
+    ckb: "هەندێک لە کڕیارەکانمان",
+  } satisfies T,
 
   servicesTitle: {
     en: "What we do",
@@ -408,19 +414,24 @@ export const portfolioPage = {
     ckb: "نموونەی پڕۆژەکان",
   } satisfies T,
   lead: {
-    en: "We publish a project only after the client has approved being named. Until then, this page shows the shape of what is coming rather than borrowed logos.",
-    ar: "لا ننشر أي مشروع إلا بعد موافقة العميل على ذكر اسمه. وحتى ذلك الحين تعرض هذه الصفحة شكل ما هو قادم بدل شعارات مستعارة.",
-    ckb: "تەنها دوای ئەوەی کڕیارەکە ڕەزامەندی لەسەر ناوهێنانی دەردەبڕێت پڕۆژە بڵاو دەکەینەوە. تا ئەو کاتە، ئەم لاپەڕەیە شێوەی ئەوە پیشان دەدات کە دێت، نەک لۆگۆی بەکرێگیراو.",
+    en: "These companies run their business on Odoo with us. Detailed case studies — scope, modules, results — are being written up with each client now.",
+    ar: "هذه الشركات تدير أعمالها بنظام Odoo معنا. دراسات الحالة التفصيلية — النطاق والوحدات والنتائج — قيد الإعداد الآن مع كل عميل.",
+    ckb: "ئەم کۆمپانیایانە بە Odoo کارەکانیان لەگەڵ ئێمە بەڕێوە دەبەن. نموونە پڕۆژە وردەکان — چوارچێوە، مۆدیوڵ و ئەنجامەکان — ئێستا لەگەڵ هەر کڕیارێک ئامادە دەکرێن.",
+  } satisfies T,
+  clientsTitle: {
+    en: "Companies we work with",
+    ar: "شركات نعمل معها",
+    ckb: "ئەو کۆمپانیایانەی کاریان لەگەڵ دەکەین",
   } satisfies T,
   noticeTitle: {
-    en: "Placeholder content",
-    ar: "محتوى مؤقّت",
-    ckb: "ناوەڕۆکی کاتی",
+    en: "Case studies in preparation",
+    ar: "دراسات الحالة قيد الإعداد",
+    ckb: "نموونە پڕۆژەکان لە ئامادەکردندان",
   } satisfies T,
   noticeBody: {
-    en: "The three entries below are placeholders showing the layout. No client is named because no client has approved being named yet.",
-    ar: "المدخلات الثلاثة أدناه مؤقّتة لعرض التنسيق. لم يُذكر أي عميل لأن أحداً لم يوافق بعد على ذكر اسمه.",
-    ckb: "ئەو سێ تۆمارەی خوارەوە کاتین بۆ پیشاندانی شێوەی لاپەڕەکە. ناوی هیچ کڕیارێک نەهێنراوە چونکە هێشتا هیچ کڕیارێک ڕەزامەندی نەداوە.",
+    en: "The client list above is real. The three entries below are placeholders for the detailed write-ups — each will be published once its client approves the details.",
+    ar: "قائمة العملاء أعلاه حقيقية. المدخلات الثلاثة أدناه مؤقّتة للدراسات التفصيلية — وستُنشر كل واحدة بعد موافقة عميلها على التفاصيل.",
+    ckb: "لیستی کڕیارەکانی سەرەوە ڕاستەقینەیە. ئەو سێ تۆمارەی خوارەوە کاتین بۆ نووسینە وردەکان — هەر یەکێکیان بڵاو دەبێتەوە کاتێک کڕیارەکەی ڕەزامەندی لەسەر وردەکارییەکان دەدات.",
   } satisfies T,
   placeholderBadge: {
     en: "Placeholder",

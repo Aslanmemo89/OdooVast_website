@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { ClientLogos } from "@/components/ClientLogos";
 import { CtaBand } from "@/components/CtaBand";
 import { Hero } from "@/components/Hero";
 import { Icon } from "@/components/Icon";
@@ -48,7 +49,16 @@ export default function HomePage({ params }: Props) {
         </Reveal>
       </Section>
 
-      <Section labelledBy="services">
+      <Section labelledBy="clients">
+        <div className="section__head section__head--center">
+          <h2 id="clients">{t(home.clientsTitle, locale)}</h2>
+        </div>
+        <Reveal>
+          <ClientLogos locale={locale} />
+        </Reveal>
+      </Section>
+
+      <Section tone="sunken" labelledBy="services">
         <div className="section__head">
           <h2 id="services">{t(home.servicesTitle, locale)}</h2>
           <p className="section__lead">{t(home.servicesLead, locale)}</p>
@@ -68,7 +78,7 @@ export default function HomePage({ params }: Props) {
         </div>
       </Section>
 
-      <Section tone="sunken" labelledBy="industries">
+      <Section labelledBy="industries">
         <div className="section__head">
           <h2 id="industries">{t(home.industriesTitle, locale)}</h2>
           <p className="section__lead">{t(home.industriesLead, locale)}</p>
