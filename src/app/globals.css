@@ -1688,3 +1688,246 @@ a.contact-item__value:hover {
     display: none;
   }
 }
+
+/* ----------------------------------------------------------------- legal */
+
+.legal {
+  max-width: var(--measure);
+}
+
+.legal__summary {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.legal__summary h2 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-block-end: var(--space-4);
+}
+
+:lang(ar) .legal__summary h2,
+:lang(ckb) .legal__summary h2 {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.legal__summary ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.legal__summary li {
+  position: relative;
+  padding-inline-start: var(--space-5);
+  color: var(--ink-muted);
+}
+
+.legal__summary li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.55em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Clause numbers come from this counter, never from the translated text. */
+.legal__clauses {
+  counter-reset: clause;
+  list-style: none;
+  padding: 0;
+  margin-block-start: var(--space-8);
+  display: grid;
+  gap: var(--space-7);
+}
+
+.legal__clause {
+  counter-increment: clause;
+  padding-block-start: var(--space-7);
+  border-block-start: 1px solid var(--border);
+}
+
+.legal__clause:first-child {
+  padding-block-start: 0;
+  border-block-start: 0;
+}
+
+.legal__clause > h2 {
+  font-size: var(--text-xl);
+  margin-block-end: var(--space-4);
+  scroll-margin-block-start: var(--space-8);
+}
+
+.legal__clause > h2::before {
+  content: counter(clause) ". ";
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.legal__clause p {
+  color: var(--ink-muted);
+}
+
+.legal__clause > p + p {
+  margin-block-start: var(--space-4);
+}
+
+.legal__points {
+  list-style: none;
+  padding: 0;
+  margin-block-start: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.legal__points li {
+  position: relative;
+  padding-inline-start: var(--space-5);
+  color: var(--ink-muted);
+}
+
+.legal__points li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.6em;
+  width: 0.5rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.legal__defs {
+  margin-block-start: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.legal__defs dt {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.legal__defs dd {
+  margin: 0;
+  margin-block-start: var(--space-2);
+  color: var(--ink-muted);
+}
+
+.legal__links {
+  margin-block-start: var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.legal__links a {
+  font-weight: 600;
+  color: var(--accent-ink);
+}
+
+.legal__contact {
+  margin-block-start: var(--space-8);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.legal__contact h2 {
+  font-size: var(--text-lg);
+  margin-block-end: var(--space-3);
+}
+
+.legal__contact p {
+  color: var(--ink-muted);
+}
+
+.legal__contact .btn-row {
+  margin-block-start: var(--space-5);
+}
+
+.legal__address {
+  margin-block-start: var(--space-5);
+  font-size: var(--text-sm);
+}
+
+.legal__related {
+  margin-block-start: var(--space-8);
+}
+
+.legal__related h2 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-block-end: var(--space-4);
+}
+
+:lang(ar) .legal__related h2,
+:lang(ckb) .legal__related h2 {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.legal__related ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.legal__related a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+}
+
+/* The arrow points the way the language reads. */
+[dir="rtl"] .legal__related a svg,
+[dir="rtl"] .case .ticklist svg {
+  transform: scaleX(-1);
+}
+
+.ticklist--tight {
+  margin-block-start: var(--space-4);
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+/* A legal page is the one page people actually print. */
+@media print {
+  .header,
+  .footer,
+  .fab,
+  .legal__related,
+  .skip {
+    display: none !important;
+  }
+
+  .pagehead,
+  .section {
+    padding-block: 0.5rem;
+  }
+
+  .legal__clause {
+    break-inside: avoid;
+  }
+}

@@ -152,6 +152,28 @@ export const ui = {
     ckb: "تکایە ئەو خانانە ڕاست بکەرەوە کە دیاریکراون.",
   },
 
+  navPrivacy: { en: "Privacy Policy", ar: "سياسة الخصوصية", ckb: "سیاسەتی تایبەتێتی" },
+  navTerms: { en: "Terms of Service", ar: "شروط الخدمة", ckb: "مەرجەکانی خزمەتگوزاری" },
+  navDataDeletion: {
+    en: "User Data Deletion",
+    ar: "حذف بيانات المستخدم",
+    ckb: "سڕینەوەی داتای بەکارهێنەر",
+  },
+
+  /** Shown above the h1 on a legal page, beside the date. */
+  legalUpdated: { en: "Last updated", ar: "آخر تحديث", ckb: "دوا نوێکردنەوە" },
+  legalRelated: {
+    en: "The other two documents",
+    ar: "الوثيقتان الأخريان",
+    ckb: "ئەو دوو بەڵگەنامەی تر",
+  },
+  legalPrint: {
+    en: "Print or save as PDF",
+    ar: "اطبع أو احفظ بصيغة PDF",
+    ckb: "چاپی بکە یان وەک PDF پاشەکەوتی بکە",
+  },
+
+  footerLegal: { en: "Legal", ar: "قانوني", ckb: "یاسایی" },
   footerQuickLinks: { en: "Pages", ar: "الصفحات", ckb: "لاپەڕەکان" },
   footerContact: { en: "Get in touch", ar: "تواصل معنا", ckb: "پەیوەندیمان پێوە بکە" },
   footerFollow: { en: "Follow", ar: "تابعنا", ckb: "شوێنمان بکەوە" },

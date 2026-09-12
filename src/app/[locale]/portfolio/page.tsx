@@ -8,7 +8,7 @@ import { PageShell } from "@/components/PageShell";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { portfolioPage } from "@/content/pages";
-import { localeFromParam, t } from "@/lib/i18n";
+import { localeFromParam, t, tl } from "@/lib/i18n";
 import { buildMetadata } from "@/lib/seo";
 
 type Props = { params: { locale: string } };
@@ -43,20 +43,25 @@ export default function PortfolioPage({ params }: Props) {
         </div>
       </Section>
 
-      <Section tone="sunken">
+      <Section tone="sunken" labelledBy="cases">
+        <div className="section__head">
+          <h2 id="cases">{t(portfolioPage.casesTitle, locale)}</h2>
+        </div>
         <Reveal>
           <div className="grid grid--3">
             {portfolioPage.cases.map((item) => (
               <article key={item.title.en} className="case">
-                {item.placeholder ? (
-                  <span className="badge badge--warn">
-                    <Icon name="alert" size={14} />
-                    {t(portfolioPage.placeholderBadge, locale)}
-                  </span>
-                ) : null}
                 <p className="deflist__term">{t(item.sector, locale)}</p>
                 <h3>{t(item.title, locale)}</h3>
                 <p>{t(item.body, locale)}</p>
+                <ul className="ticklist ticklist--tight">
+                  {tl(item.points, locale).map((point) => (
+                    <li key={point.slice(0, 32)}>
+                      <Icon name="check" size={16} />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>

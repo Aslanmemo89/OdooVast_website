@@ -15,6 +15,13 @@ const NAV: { key: PageKey; label: T }[] = [
   { key: "contact", label: ui.navContact },
 ];
 
+/** Kept out of the main nav on purpose — present, findable, not in the way. */
+const LEGAL: { key: PageKey; label: T }[] = [
+  { key: "privacy", label: ui.navPrivacy },
+  { key: "terms", label: ui.navTerms },
+  { key: "dataDeletion", label: ui.navDataDeletion },
+];
+
 /** Only links that actually resolve are rendered — a null stays off the page. */
 const socials: { name: IconName; url: string | null; label: string }[] = [
   { name: "linkedin", url: company.social.linkedin, label: "LinkedIn" },
@@ -104,6 +111,15 @@ export function Footer({ locale }: { locale: Locale }) {
           <p>
             © <span className="ltr">{year}</span> OdooVast. {t(ui.footerRights, locale)}
           </p>
+
+          <nav className="footer__legal" aria-label={t(ui.footerLegal, locale)}>
+            {LEGAL.map((item) => (
+              <Link key={item.key} href={href(locale, item.key)}>
+                {t(item.label, locale)}
+              </Link>
+            ))}
+          </nav>
+
           <p>{t(company.partnerStatus, locale)}</p>
         </div>
       </div>

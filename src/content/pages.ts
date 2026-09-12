@@ -10,9 +10,24 @@ export const pageKeys = [
   "industries",
   "portfolio",
   "contact",
+  "privacy",
+  "terms",
+  "dataDeletion",
 ] as const;
 
 export type PageKey = (typeof pageKeys)[number];
+
+/**
+ * The three legal pages. They are reachable from the footer rather than the
+ * main navigation, but they are real routes in all three languages and they
+ * belong in the sitemap like any other page.
+ */
+export const legalKeys = ["privacy", "terms", "dataDeletion"] as const;
+
+export type LegalKey = (typeof legalKeys)[number];
+
+export const isLegalKey = (key: PageKey): key is LegalKey =>
+  (legalKeys as readonly PageKey[]).includes(key);
 
 /** Path after the locale prefix. Home is the locale root. */
 export const pagePath: Record<PageKey, string> = {
@@ -22,6 +37,10 @@ export const pagePath: Record<PageKey, string> = {
   industries: "/industries",
   portfolio: "/portfolio",
   contact: "/contact",
+  privacy: "/privacy",
+  terms: "/terms",
+  // Hyphenated, because this is the URL Meta and Google ask for by name.
+  dataDeletion: "/data-deletion",
 };
 
 export const href = (locale: Locale, key: PageKey): string =>
@@ -103,6 +122,42 @@ export const pageMeta: Record<PageKey, PageMeta> = {
       en: "Phone, WhatsApp, email and office address for OdooVast in Erbil, Iraq. Open 24/7. Get in touch for a free consultation.",
       ar: "الهاتف وواتساب والبريد الإلكتروني وعنوان مكتب OdooVast في أربيل، العراق. مفتوح على مدار الساعة. تواصل معنا لاستشارة مجانية.",
       ckb: "تەلەفۆن، واتسئاپ، ئیمەیڵ و ناونیشانی نووسینگەی OdooVast لە هەولێری عێراق. ٢٤/٧ کراوەیە. بۆ ڕاوێژکاری خۆڕایی پەیوەندیمان پێوە بکە.",
+    },
+  },
+  privacy: {
+    title: {
+      en: "Privacy Policy — OdooVast",
+      ar: "سياسة الخصوصية — OdooVast",
+      ckb: "سیاسەتی تایبەتێتی — OdooVast",
+    },
+    description: {
+      en: "How OdooVast handles personal information. This website sets no cookies, runs no analytics and stores nothing you type. What we do hold, why, and how to have it deleted.",
+      ar: "كيف تتعامل OdooVast مع المعلومات الشخصية. هذا الموقع لا يستخدم ملفات تعريف الارتباط ولا أدوات تحليل ولا يخزّن ما تكتبه. ما نحتفظ به ولماذا وكيف تطلب حذفه.",
+      ckb: "OdooVast چۆن مامەڵە لەگەڵ زانیاری کەسی دەکات. ئەم ماڵپەڕە هیچ کۆکیەک دانانێت، هیچ شیکارییەک ناکات و ئەوەی دەینووسیت هەڵناگرێت. ئەوەی هەڵیدەگرین، بۆچی، و چۆن داوای سڕینەوەی بکەیت.",
+    },
+  },
+  terms: {
+    title: {
+      en: "Terms of Service — OdooVast",
+      ar: "شروط الخدمة — OdooVast",
+      ckb: "مەرجەکانی خزمەتگوزاری — OdooVast",
+    },
+    description: {
+      en: "The terms that govern the use of the OdooVast website, the free consultation, and the relationship between this site and a signed Odoo implementation contract.",
+      ar: "الشروط التي تحكم استخدام موقع OdooVast والاستشارة المجانية والعلاقة بين هذا الموقع وعقد تنفيذ Odoo الموقّع.",
+      ckb: "ئەو مەرجانەی بەکارهێنانی ماڵپەڕی OdooVast، ڕاوێژکاری خۆڕایی و پەیوەندی نێوان ئەم ماڵپەڕە و گرێبەستی جێبەجێکردنی Odoo ڕێکدەخەن.",
+    },
+  },
+  dataDeletion: {
+    title: {
+      en: "User Data Deletion — OdooVast",
+      ar: "حذف بيانات المستخدم — OdooVast",
+      ckb: "سڕینەوەی داتای بەکارهێنەر — OdooVast",
+    },
+    description: {
+      en: "How to ask OdooVast to delete the personal information we hold about you, what we can delete, what only you can delete, and how long it takes.",
+      ar: "كيف تطلب من OdooVast حذف المعلومات الشخصية التي نحتفظ بها عنك، وما يمكننا حذفه، وما لا يمكن حذفه إلا بواسطتك، وكم يستغرق ذلك.",
+      ckb: "چۆن داوا لە OdooVast بکەیت ئەو زانیارییە کەسییەی دەربارەت هەمانە بسڕێتەوە، چی دەتوانین بیسڕینەوە، چی تەنها خۆت دەتوانیت بیسڕیتەوە، و چەند کات دەخایەنێت.",
     },
   },
 };
@@ -397,14 +452,19 @@ export const industriesPage = {
 
 /* --------------------------------------------------------- portfolio page */
 
-/** TODO: every entry below is a placeholder. Replace `placeholder: true` with a
- *  real, client-approved case study — name, sector, scope, outcome — or leave
- *  it out. Never publish a client name without written approval. */
+/**
+ * What an engagement in each sector actually involves. These describe our own
+ * work and claim no client result — so nothing here needs client approval.
+ *
+ * A named case study (client, figures, outcome) is a different thing and goes
+ * live only with that client's written approval. Add those as real entries;
+ * never turn one of these into a result claim by adding numbers to it.
+ */
 export type CaseStudy = {
-  placeholder: boolean;
   sector: T;
   title: T;
   body: T;
+  points: TList;
 };
 
 export const portfolioPage = {
@@ -424,19 +484,19 @@ export const portfolioPage = {
     ckb: "ئەو کۆمپانیایانەی کاریان لەگەڵ دەکەین",
   } satisfies T,
   noticeTitle: {
-    en: "Case studies in preparation",
-    ar: "دراسات الحالة قيد الإعداد",
-    ckb: "نموونە پڕۆژەکان لە ئامادەکردندان",
+    en: "Named case studies are being written up",
+    ar: "دراسات الحالة بالأسماء قيد الإعداد",
+    ckb: "نموونە پڕۆژە ناودارەکان لە نووسیندان",
   } satisfies T,
   noticeBody: {
-    en: "The client list above is real. The three entries below are placeholders for the detailed write-ups — each will be published once its client approves the details.",
-    ar: "قائمة العملاء أعلاه حقيقية. المدخلات الثلاثة أدناه مؤقّتة للدراسات التفصيلية — وستُنشر كل واحدة بعد موافقة عميلها على التفاصيل.",
-    ckb: "لیستی کڕیارەکانی سەرەوە ڕاستەقینەیە. ئەو سێ تۆمارەی خوارەوە کاتین بۆ نووسینە وردەکان — هەر یەکێکیان بڵاو دەبێتەوە کاتێک کڕیارەکەی ڕەزامەندی لەسەر وردەکارییەکان دەدات.",
+    en: "The client list above is real. We do not publish a client's figures or results until that client has approved them in writing, so what follows describes the work itself — what a project in each sector covers and what comes out of it.",
+    ar: "قائمة العملاء أعلاه حقيقية. ولا ننشر أرقام أي عميل أو نتائجه قبل موافقته الخطية، لذا يصف ما يلي العمل نفسه — ما الذي يغطيه المشروع في كل قطاع وما الذي يخرج منه.",
+    ckb: "لیستی کڕیارەکانی سەرەوە ڕاستەقینەیە. ژمارە و ئەنجامەکانی هیچ کڕیارێک بڵاو ناکەینەوە پێش ئەوەی بە نووسراوی ڕەزامەندی بدات، بۆیە ئەوەی بەدوادا دێت باسی خودی کارەکە دەکات — پڕۆژەیەک لە هەر کەرتێکدا چی دەگرێتەوە و چی لێی دەردەچێت.",
   } satisfies T,
-  placeholderBadge: {
-    en: "Placeholder",
-    ar: "مؤقّت",
-    ckb: "کاتی",
+  casesTitle: {
+    en: "What a project looks like, by sector",
+    ar: "شكل المشروع بحسب القطاع",
+    ckb: "پڕۆژە بە پێی کەرت چۆن دەردەکەوێت",
   } satisfies T,
   ctaTitle: {
     en: "Would you like to be the first one here?",
@@ -450,7 +510,6 @@ export const portfolioPage = {
   } satisfies T,
   cases: [
     {
-      placeholder: true,
       sector: { en: "Retail", ar: "تجارة التجزئة", ckb: "فرۆشتنی وردە" },
       title: {
         en: "Multi-branch retail — POS and stock on one system",
@@ -458,13 +517,32 @@ export const portfolioPage = {
         ckb: "فرۆشتنی وردەی چەند لق — POS و کۆگا لەسەر یەک سیستەم",
       },
       body: {
-        en: "TODO: replace with a real, client-approved project — sector, scope, modules deployed, and the measurable outcome the client agreed to publish.",
-        ar: "TODO: استبدلها بمشروع حقيقي بموافقة العميل — القطاع والنطاق والوحدات المطبَّقة والنتيجة القابلة للقياس التي وافق العميل على نشرها.",
-        ckb: "TODO: بیگۆڕە بە پڕۆژەیەکی ڕاستەقینەی پەسەندکراو لەلایەن کڕیار — کەرت، چوارچێوە، مۆدیوڵە جێبەجێکراوەکان و ئەنجامی پێواکراو کە کڕیار ڕەزامەندی لەسەر بڵاوکردنەوەی داوە.",
+        en: "Every till in every branch writes to the same stock ledger. A sale in one shop moves the number the other shops and the warehouse are reading, so the branch manager stops phoning around to find out what is actually on the shelf.",
+        ar: "كل نقطة بيع في كل فرع تكتب في دفتر المخزون نفسه. فالبيع في متجر واحد يحرّك الرقم الذي تقرأه بقية المتاجر والمستودع، فيتوقف مدير الفرع عن الاتصال هنا وهناك ليعرف ما هو موجود فعلاً على الرف.",
+        ckb: "هەموو کاشێرێک لە هەموو لقێکدا لە هەمان دەفتەری کۆگا دەنووسێت. فرۆشتنێک لە دوکانێکدا ئەو ژمارە دەجوڵێنێت کە دوکانەکانی تر و کۆگاکە دەیخوێننەوە، بۆیە بەڕێوەبەری لق چیتر پەیوەندی بەم و بەو ناکات بۆ ئەوەی بزانێت بەڕاستی چی لەسەر ڕەفەکەیە.",
+      },
+      points: {
+        en: [
+          "Point of Sale on every counter, offline-tolerant",
+          "One stock ledger across branches and warehouse",
+          "Barcode receiving, transfers and stock counts",
+          "Daily cash-up that reconciles against the accounts",
+        ],
+        ar: [
+          "نقطة بيع على كل كاشير، تعمل حتى دون إنترنت",
+          "دفتر مخزون واحد للفروع والمستودع",
+          "استلام وتحويلات وجرد بالباركود",
+          "تقفيل صندوق يومي يطابق الحسابات",
+        ],
+        ckb: [
+          "خاڵی فرۆشتن لەسەر هەموو کاشێرێک، بێ ئینتەرنێتیش کار دەکات",
+          "یەک دەفتەری کۆگا بۆ لقەکان و کۆگا",
+          "وەرگرتن، گواستنەوە و ژماردنی کۆگا بە بارکۆد",
+          "داخستنی ڕۆژانەی سندوق کە لەگەڵ حسابەکان دەگونجێت",
+        ],
       },
     },
     {
-      placeholder: true,
       sector: { en: "Manufacturing", ar: "التصنيع", ckb: "بەرهەمهێنان" },
       title: {
         en: "Production floor — real cost per manufacturing order",
@@ -472,13 +550,32 @@ export const portfolioPage = {
         ckb: "شوێنی بەرهەمهێنان — تێچووی ڕاستەقینەی هەر فەرمانێکی بەرهەمهێنان",
       },
       body: {
-        en: "TODO: replace with a real, client-approved project — sector, scope, modules deployed, and the measurable outcome the client agreed to publish.",
-        ar: "TODO: استبدلها بمشروع حقيقي بموافقة العميل — القطاع والنطاق والوحدات المطبَّقة والنتيجة القابلة للقياس التي وافق العميل على نشرها.",
-        ckb: "TODO: بیگۆڕە بە پڕۆژەیەکی ڕاستەقینەی پەسەندکراو لەلایەن کڕیار — کەرت، چوارچێوە، مۆدیوڵە جێبەجێکراوەکان و ئەنجامی پێواکراو کە کڕیار ڕەزامەندی لەسەر بڵاوکردنەوەی داوە.",
+        en: "A bill of materials and a routing per product, so that the cost of a finished item is calculated from the material and the hours it actually consumed — not estimated at the end of the month and argued about.",
+        ar: "قائمة مواد ومسار تصنيع لكل منتج، بحيث تُحتسب كلفة الصنف الجاهز من المواد والساعات التي استهلكها فعلاً — لا أن تُقدَّر في آخر الشهر ويُختلف عليها.",
+        ckb: "لیستی کەرەستە و ڕێڕەوی بەرهەمهێنان بۆ هەر بەرهەمێک، تاکو تێچووی شتی تەواوبوو لە کەرەستە و ئەو کاتژمێرانەوە بژمێردرێت کە بەڕاستی خەرجی کردوون — نەک لە کۆتایی مانگدا خەمڵێندرێت و مشتومڕی لەسەر بکرێت.",
+      },
+      points: {
+        en: [
+          "Bills of materials, operations and work centres",
+          "Work orders the floor can actually use on a tablet",
+          "Raw material consumed and finished goods booked in real time",
+          "Cost per order, comparable against the quotation",
+        ],
+        ar: [
+          "قوائم مواد وعمليات ومراكز عمل",
+          "أوامر عمل يمكن للمصنع استخدامها فعلاً على جهاز لوحي",
+          "تسجيل استهلاك المواد الخام والمنتج الجاهز لحظياً",
+          "كلفة لكل أمر، قابلة للمقارنة مع عرض السعر",
+        ],
+        ckb: [
+          "لیستی کەرەستە، کردارەکان و ناوەندەکانی کار",
+          "فەرمانی کار کە شوێنی بەرهەمهێنان بەڕاستی لەسەر تابلێت بەکاری بهێنێت",
+          "تۆمارکردنی خەرجکردنی کەرەستەی خاو و بەرهەمی تەواو لە هەمان کاتدا",
+          "تێچووی هەر فەرمانێک، بەراوردکراو لەگەڵ نرخنامەکە",
+        ],
       },
     },
     {
-      placeholder: true,
       sector: {
         en: "Trading & distribution",
         ar: "التجارة والتوزيع",
@@ -490,9 +587,29 @@ export const portfolioPage = {
         ckb: "هاوردە و دابەشکردن — تێچووی کۆتایی بە شێوەیەکی دروست",
       },
       body: {
-        en: "TODO: replace with a real, client-approved project — sector, scope, modules deployed, and the measurable outcome the client agreed to publish.",
-        ar: "TODO: استبدلها بمشروع حقيقي بموافقة العميل — القطاع والنطاق والوحدات المطبَّقة والنتيجة القابلة للقياس التي وافق العميل على نشرها.",
-        ckb: "TODO: بیگۆڕە بە پڕۆژەیەکی ڕاستەقینەی پەسەندکراو لەلایەن کڕیار — کەرت، چوارچێوە، مۆدیوڵە جێبەجێکراوەکان و ئەنجامی پێواکراو کە کڕیار ڕەزامەندی لەسەر بڵاوکردنەوەی داوە.",
+        en: "Freight, customs, clearance and transport are spread across the shipment they belong to, so the cost you compare your selling price against is the cost the goods actually reached the warehouse at.",
+        ar: "تُوزَّع أجور الشحن والجمارك والتخليص والنقل على الشحنة التي تخصها، فتصبح الكلفة التي تقارن بها سعر بيعك هي الكلفة التي وصلت بها البضاعة إلى المستودع فعلاً.",
+        ckb: "کرێی گواستنەوە، گومرگ، دەرکردن و هاتوچۆ بەسەر ئەو بارەدا دابەش دەکرێن کە سەر بەوانە، بۆیە ئەو تێچووەی نرخی فرۆشتنی پێ بەراورد دەکەیت هەمان ئەو تێچووەیە کە کاڵاکە بەڕاستی پێی گەیشتووەتە کۆگا.",
+      },
+      points: {
+        en: [
+          "Landed cost spread over freight, customs and clearance",
+          "Purchase orders tracked from supplier to warehouse",
+          "Price lists and credit limits per customer",
+          "Margin per product and per customer, not per guess",
+        ],
+        ar: [
+          "توزيع الكلفة النهائية على الشحن والجمارك والتخليص",
+          "تتبّع أوامر الشراء من المورّد حتى المستودع",
+          "قوائم أسعار وحدود ائتمان لكل عميل",
+          "هامش ربح لكل منتج ولكل عميل، لا بالتخمين",
+        ],
+        ckb: [
+          "دابەشکردنی تێچووی کۆتایی بەسەر گواستنەوە، گومرگ و دەرکردندا",
+          "بەدواداچوونی داواکاری کڕین لە دابینکەرەوە تا کۆگا",
+          "لیستی نرخ و سنووری قەرز بۆ هەر کڕیارێک",
+          "قازانج بۆ هەر بەرهەمێک و هەر کڕیارێک، نەک بە پێی گریمانە",
+        ],
       },
     },
   ] satisfies CaseStudy[],
