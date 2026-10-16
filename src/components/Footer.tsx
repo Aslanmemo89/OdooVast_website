@@ -33,7 +33,7 @@ export function Footer({ locale }: { locale: Locale }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="footer">
+    <footer className="footer" data-spotlight>
       <div className="container">
         <div className="footer__grid">
           <div>

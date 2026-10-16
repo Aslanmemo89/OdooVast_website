@@ -53,9 +53,9 @@ export default function AboutPage({ params }: Props) {
           <h2 id="values">{t(about.valuesTitle, locale)}</h2>
         </div>
         <Reveal>
-          <div className="grid grid--2">
+          <div className="grid grid--2" data-glow-group>
             {about.values.map((value) => (
-              <article key={value.title.en} className="card">
+              <article key={value.title.en} className="card" data-tilt="5" data-glow>
                 <span className="card__icon" aria-hidden="true">
                   <Icon name={value.icon} size={22} />
                 </span>

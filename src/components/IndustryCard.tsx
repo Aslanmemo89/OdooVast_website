@@ -7,7 +7,7 @@ import { t, ui, type Locale } from "@/lib/i18n";
 
 export function IndustryCard({ industry, locale }: { industry: Industry; locale: Locale }) {
   return (
-    <article className="card">
+    <article className="card" data-tilt="7" data-glow>
       <span className="card__icon" aria-hidden="true">
         <Icon name={industry.icon} size={22} />
       </span>

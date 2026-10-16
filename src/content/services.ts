@@ -3,7 +3,7 @@ import type { T, TList } from "@/lib/i18n";
 
 /**
  * Service names and one-line summaries come verbatim from FACTS.md (extracted
- * from the live site). The "includes" and "suited for" lines describe what
+ * from the live site), except Mobile Applications, added on the owner's request. The "includes" and "suited for" lines describe what
  * Odoo does and how we deliver it — they make no claim about past clients,
  * project counts or results.
  */
@@ -244,6 +244,55 @@ export const services: Service[] = [
       en: "Retailers and wholesalers who want one stock figure, not two.",
       ar: "تجار التجزئة والجملة الذين يريدون رقم مخزون واحداً لا رقمين.",
       ckb: "ئەو فرۆشیارە گەورە و بچووکانەی یەک ژمارەی کۆگایان دەوێت، نەک دوو.",
+    },
+  },
+  {
+    /* Added at the owner's request on 2026-10-15 — not from the live site.
+       TODO: confirm the included lines with the owner (iOS as well as Android?
+       apps for customers as well as staff? publishing to the stores?). */
+    slug: "mobile-applications",
+    icon: "mobile",
+    core: false,
+    title: {
+      en: "Mobile Applications",
+      ar: "تطبيقات الموبايل",
+      ckb: "ئەپی مۆبایل",
+    },
+    summary: {
+      en: "Mobile apps connected to your Odoo.",
+      ar: "تطبيقات موبايل مرتبطة بنظام Odoo لديك.",
+      ckb: "ئەپی مۆبایل کە بە Odooی کۆمپانیاکەتەوە بەستراون.",
+    },
+    includes: {
+      en: [
+        "Android and iOS apps working on your live Odoo data",
+        "Apps for staff on the move — sales reps, drivers, technicians",
+        "Apps for your customers to order and follow their orders",
+        "Barcode scanning and photos straight from the phone camera",
+        "Notifications for new orders, approvals and status changes",
+        "Publishing to Google Play and the App Store, then ongoing updates",
+      ],
+      ar: [
+        "تطبيقات أندرويد وiOS تعمل على بيانات Odoo الحيّة",
+        "تطبيقات للعاملين خارج المكتب — المندوبين والسائقين والفنيين",
+        "تطبيقات لعملائك للطلب ومتابعة طلباتهم",
+        "مسح الباركود والتقاط الصور مباشرة من كاميرا الهاتف",
+        "إشعارات بالطلبات الجديدة والموافقات وتغيّر الحالة",
+        "النشر على Google Play وApp Store، ثم التحديثات المستمرة",
+      ],
+      ckb: [
+        "ئەپی Android و iOS کە لەسەر داتای زیندووی Odoo کار دەکەن",
+        "ئەپ بۆ کارمەندانی دەرەوەی نووسینگە — نوێنەری فرۆشتن، شۆفێر، تەکنیککار",
+        "ئەپ بۆ کڕیارەکانت بۆ داواکردن و بەدواداچوونی داواکارییەکانیان",
+        "سکانکردنی بارکۆد و گرتنی وێنە ڕاستەوخۆ لە کامێرای مۆبایل",
+        "ئاگادارکردنەوە بۆ داواکاری نوێ، پەسەندکردن و گۆڕانی دۆخ",
+        "بڵاوکردنەوە لە Google Play و App Store، پاشان نوێکردنەوەی بەردەوام",
+      ],
+    },
+    suitedFor: {
+      en: "Companies whose people work away from a desk, or whose customers would rather order from a phone.",
+      ar: "الشركات التي يعمل موظفوها بعيداً عن المكتب، أو التي يفضّل عملاؤها الطلب من الهاتف.",
+      ckb: "ئەو کۆمپانیایانەی کارمەندەکانیان دوور لە مێز کار دەکەن، یان کڕیارەکانیان پێیان باشترە لە مۆبایلەوە داوا بکەن.",
     },
   },
   {

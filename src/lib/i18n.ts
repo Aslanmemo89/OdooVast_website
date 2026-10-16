@@ -69,6 +69,72 @@ export const fill = (template: string, vars: Record<string, string>): string =>
   template.replace(/\{(\w+)\}/g, (_match, key: string) => vars[key] ?? "");
 
 /**
+ * A counted phrase, one string per CLDR plural category; "#" becomes the
+ * number. Arabic needs five forms (فرع واحد، فرعان، 3 فروع، 11 فرعاً، 100 فرع),
+ * English and Sorani only tell one from many.
+ */
+export type TPlural = {
+  en: { one: string; other: string };
+  ar: { one: string; two: string; few: string; many: string; other: string };
+  ckb: { one: string; other: string };
+};
+
+const EASTERN_DIGITS = "٠١٢٣٤٥٦٧٨٩";
+
+/** Sorani copy on this site writes numbers in Eastern Arabic digits (١٢ لاپەڕە). */
+export const num = (n: number, locale: Locale): string =>
+  locale === "ckb"
+    ? String(n).replace(/\d/g, (d) => EASTERN_DIGITS[Number(d)] ?? d)
+    : String(n);
+
+export function tn(forms: TPlural, n: number, locale: Locale): string {
+  const category = new Intl.PluralRules(htmlLang[locale]).select(n);
+  const set: Record<string, string> = forms[locale];
+  return (set[category] ?? set.other ?? "").replace("#", num(n, locale));
+}
+
+/** Counted labels on the client cards. */
+export const counts = {
+  branches: {
+    en: { one: "# branch", other: "# branches" },
+    ar: { one: "فرع واحد", two: "فرعان", few: "# فروع", many: "# فرعاً", other: "# فرع" },
+    ckb: { one: "یەک لق", other: "# لق" },
+  },
+  factories: {
+    en: { one: "# factory", other: "# factories" },
+    ar: { one: "مصنع واحد", two: "مصنعان", few: "# مصانع", many: "# مصنعاً", other: "# مصنع" },
+    ckb: { one: "یەک کارگە", other: "# کارگە" },
+  },
+  companies: {
+    en: { one: "# company", other: "# companies" },
+    ar: { one: "شركة واحدة", two: "شركتان", few: "# شركات", many: "# شركة", other: "# شركة" },
+    ckb: { one: "یەک کۆمپانیا", other: "# کۆمپانیا" },
+  },
+  citiesInIraq: {
+    en: { one: "# city in Iraq", other: "# cities in Iraq" },
+    ar: {
+      one: "مدينة واحدة في العراق",
+      two: "مدينتان في العراق",
+      few: "# مدن في العراق",
+      many: "# مدينة في العراق",
+      other: "# مدينة في العراق",
+    },
+    ckb: { one: "یەک شار لە عێراق", other: "# شار لە عێراق" },
+  },
+  countriesAbroad: {
+    en: { one: "# country abroad", other: "# countries abroad" },
+    ar: {
+      one: "بلد واحد خارج العراق",
+      two: "بلدان خارج العراق",
+      few: "# بلدان خارج العراق",
+      many: "# بلداً خارج العراق",
+      other: "# بلد خارج العراق",
+    },
+    ckb: { one: "یەک وڵات لە دەرەوە", other: "# وڵات لە دەرەوە" },
+  },
+} satisfies Record<string, TPlural>;
+
+/**
  * Interface chrome only. Anything a client would ask us to reword lives in
  * src/content/ instead.
  */
@@ -113,6 +179,13 @@ export const ui = {
   labelIncludes: { en: "What is included", ar: "ما الذي تتضمنه", ckb: "چی لەخۆ دەگرێت" },
   labelSuitedFor: { en: "Best suited for", ar: "الأنسب لـ", ckb: "گونجاوە بۆ" },
   labelChallenges: { en: "The problems we solve", ar: "المشكلات التي نحلها", ckb: "ئەو کێشانەی چارەسەری دەکەین" },
+  labelBranches: { en: "Branches", ar: "الفروع", ckb: "لقەکان" },
+  /** The main branch of the brand a client sells — not the client's own. */
+  labelHeadOffice: {
+    en: "Brand's main branch",
+    ar: "الفرع الرئيسي للعلامة",
+    ckb: "لقی سەرەکیی مارکەکە",
+  },
 
   formName: { en: "Full name", ar: "الاسم الكامل", ckb: "ناوی تەواو" },
   formCompany: { en: "Company", ar: "الشركة", ckb: "کۆمپانیا" },

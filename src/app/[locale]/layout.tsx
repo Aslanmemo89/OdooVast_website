@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import "../globals.css";
 
 import { JsonLd } from "@/components/JsonLd";
+import { PointerFx } from "@/components/PointerFx";
 import { company } from "@/content/company";
 import { dir, htmlLang, isLocale, locales } from "@/lib/i18n";
 
@@ -87,9 +88,12 @@ export default function LocaleLayout({
       lang={htmlLang[locale]}
       dir={dir(locale)}
       className={`${inter.variable} ${montserrat.variable} ${kufi.variable}`}
+      // The home page's intro script sets data-intro here before React loads.
+      suppressHydrationWarning
     >
       <body>
         {children}
+        <PointerFx />
         <JsonLd locale={locale} />
       </body>
     </html>

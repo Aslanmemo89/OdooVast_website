@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ClientLogos } from "@/components/ClientLogos";
+import { ClientWall, clientSummary } from "@/components/ClientLogos";
 import { CtaBand } from "@/components/CtaBand";
 import { Hero } from "@/components/Hero";
 import { Icon } from "@/components/Icon";
 import { IndustryCard } from "@/components/IndustryCard";
+import { Intro } from "@/components/Intro";
 import { PageShell } from "@/components/PageShell";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
@@ -27,92 +28,96 @@ export default function HomePage({ params }: Props) {
   const locale = localeFromParam(params.locale);
 
   return (
-    <PageShell locale={locale} current="home">
-      <Hero locale={locale} />
+    <>
+      {/* First in the body, so its gate script runs before the hero paints. */}
+      <Intro locale={locale} />
 
-      <Section tone="subtle" labelledBy="credibility">
-        <div className="section__head">
-          <h2 id="credibility">{t(home.credibilityTitle, locale)}</h2>
-        </div>
-        <Reveal>
-          <div className="grid grid--4">
-            {home.highlights.map((item) => (
-              <div key={item.title.en} className="highlight">
-                <span className="highlight__icon" aria-hidden="true">
-                  <Icon name={item.icon} size={24} />
-                </span>
-                <h3>{t(item.title, locale)}</h3>
-                <p>{t(item.body, locale)}</p>
-              </div>
-            ))}
+      <PageShell locale={locale} current="home">
+        <Hero locale={locale} />
+
+        <Section tone="subtle" labelledBy="credibility">
+          <div className="section__head">
+            <h2 id="credibility">{t(home.credibilityTitle, locale)}</h2>
           </div>
-        </Reveal>
-      </Section>
-
-      <Section labelledBy="clients">
-        <div className="section__head section__head--center">
-          <h2 id="clients">{t(home.clientsTitle, locale)}</h2>
-        </div>
-        <Reveal>
-          <ClientLogos locale={locale} />
-        </Reveal>
-      </Section>
-
-      <Section tone="sunken" labelledBy="services">
-        <div className="section__head">
-          <h2 id="services">{t(home.servicesTitle, locale)}</h2>
-          <p className="section__lead">{t(home.servicesLead, locale)}</p>
-        </div>
-        <Reveal>
-          <div className="grid grid--3">
-            {coreServices.map((service) => (
-              <ServiceCard key={service.slug} service={service} locale={locale} />
-            ))}
-          </div>
-        </Reveal>
-        <div className="btn-row">
-          <Link className="btn btn--secondary" href={href(locale, "services")}>
-            {t(ui.ctaAllServices, locale)}
-            <Icon name="arrow" size={16} />
-          </Link>
-        </div>
-      </Section>
-
-      <Section labelledBy="industries">
-        <div className="section__head">
-          <h2 id="industries">{t(home.industriesTitle, locale)}</h2>
-          <p className="section__lead">{t(home.industriesLead, locale)}</p>
-        </div>
-        <Reveal>
-          <div className="grid grid--3">
-            {industries.map((industry) => (
-              <IndustryCard key={industry.slug} industry={industry} locale={locale} />
-            ))}
-          </div>
-        </Reveal>
-        <div className="btn-row">
-          <Link className="btn btn--secondary" href={href(locale, "industries")}>
-            {t(ui.ctaAllIndustries, locale)}
-            <Icon name="arrow" size={16} />
-          </Link>
-        </div>
-      </Section>
-
-      {/* Renders only once a real figure exists in src/content/company.ts. */}
-      {hasStats ? (
-        <Section labelledBy="stats">
-          <div className="section__head section__head--center">
-            <h2 id="stats">{t(home.statsTitle, locale)}</h2>
-          </div>
-          <Stats locale={locale} />
+          <Reveal>
+            <div className="grid grid--4" data-glow-group>
+              {home.highlights.map((item) => (
+                <div key={item.title.en} className="highlight" data-tilt="4" data-glow>
+                  <span className="highlight__icon" aria-hidden="true">
+                    <Icon name={item.icon} size={24} />
+                  </span>
+                  <h3>{t(item.title, locale)}</h3>
+                  <p>{t(item.body, locale)}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </Section>
-      ) : null}
 
-      <Section>
-        <Reveal>
-          <CtaBand locale={locale} title={home.ctaTitle} body={home.ctaBody} />
-        </Reveal>
-      </Section>
-    </PageShell>
+        <Section labelledBy="clients">
+          <div className="section__head section__head--center">
+            <h2 id="clients">{t(home.clientsTitle, locale)}</h2>
+            <p className="section__lead">{clientSummary(locale)}</p>
+          </div>
+          <ClientWall locale={locale} />
+        </Section>
+
+        <Section tone="sunken" labelledBy="services">
+          <div className="section__head">
+            <h2 id="services">{t(home.servicesTitle, locale)}</h2>
+            <p className="section__lead">{t(home.servicesLead, locale)}</p>
+          </div>
+          <Reveal>
+            <div className="grid grid--3" data-glow-group>
+              {coreServices.map((service) => (
+                <ServiceCard key={service.slug} service={service} locale={locale} />
+              ))}
+            </div>
+          </Reveal>
+          <div className="btn-row">
+            <Link className="btn btn--secondary" href={href(locale, "services")}>
+              {t(ui.ctaAllServices, locale)}
+              <Icon name="arrow" size={16} />
+            </Link>
+          </div>
+        </Section>
+
+        <Section labelledBy="industries">
+          <div className="section__head">
+            <h2 id="industries">{t(home.industriesTitle, locale)}</h2>
+            <p className="section__lead">{t(home.industriesLead, locale)}</p>
+          </div>
+          <Reveal>
+            <div className="grid grid--3" data-glow-group>
+              {industries.map((industry) => (
+                <IndustryCard key={industry.slug} industry={industry} locale={locale} />
+              ))}
+            </div>
+          </Reveal>
+          <div className="btn-row">
+            <Link className="btn btn--secondary" href={href(locale, "industries")}>
+              {t(ui.ctaAllIndustries, locale)}
+              <Icon name="arrow" size={16} />
+            </Link>
+          </div>
+        </Section>
+
+        {/* Renders only once a real figure exists in src/content/company.ts. */}
+        {hasStats ? (
+          <Section labelledBy="stats">
+            <div className="section__head section__head--center">
+              <h2 id="stats">{t(home.statsTitle, locale)}</h2>
+            </div>
+            <Stats locale={locale} />
+          </Section>
+        ) : null}
+
+        <Section>
+          <Reveal>
+            <CtaBand locale={locale} title={home.ctaTitle} body={home.ctaBody} />
+          </Reveal>
+        </Section>
+      </PageShell>
+    </>
   );
 }

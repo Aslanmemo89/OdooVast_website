@@ -51,6 +51,11 @@ page owner can open. Visitors get a permission error.
 | Manufacturing (MRP) | Streamline production with BOMs, work orders, and quality control. |
 | Point of Sale (POS) | User-friendly POS system that works online and offline. |
 
+**Added on the owner's request (2026-10-15), not from the live site:**
+Mobile Applications — "mobile apps connected to your Odoo".
+`TODO:` confirm what it includes (iOS as well as Android, apps for customers,
+publishing to the app stores) before relying on the services-page lines.
+
 ## Industries — verified
 
 - **Retail** — unified POS and inventory for single or multi-branch operations
@@ -88,7 +93,29 @@ The current site shows four figures. Only the labels came through:
 
 **Do not publish invented numbers.** Ask for the real ones.
 
-## Clients / case studies
+## Clients — confirmed by the owner
 
-Nothing verified. The portfolio page must use obvious placeholders until real,
-approved client names are supplied. **Never invent a client.**
+Logos supplied on 2026-08-14 and 2026-10-15; business, city and branch
+details on 2026-10-15. Recorded in `src/content/clients.ts` — nothing beyond
+what the owner said. **Never invent a client.**
+
+| Client | Business (owner's words) | Where |
+|---|---|---|
+| Alnajar Steel | Makes jacks, scaffolding and pipes | Erbil · 4 factories |
+| Salar Jamal | Clothing | 5 branches in Erbil, 2 in Baghdad |
+| Retal | Machines (saws, "کۆسەرە") and kitchen spare parts | Baghdad, Erbil, Mosul, Syria, China |
+| Vendor for General Trading | Derimod-brand clothing; the brand's main branch is in Turkey | Erbil, Duhok |
+| Merry An | Car spare parts | 2 branches in Erbil |
+| Som — Since 1944 | Men's shoes | 2 branches: Baghdad and Erbil |
+| Brix Burger | Restaurant | Erbil |
+| Diamond Parda Company | Zebra and fabric curtains | 1 branch in Erbil |
+| Aljawahir | Iron | 1 branch |
+
+- `TODO:` the owner described "دیری مۆند" (Derimod clothing) — matched to
+  Vendor for General Trading as the one listed client not otherwise
+  described. Confirm.
+- `TODO:` "کۆسەرە" (one of Retal's machines) is kept in the Kurdish text
+  only; the English and Arabic say "machines such as saws". Confirm the term.
+
+Case studies (scope, modules, results) are still unwritten — publish them
+only with each client's written approval.

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ClientLogos } from "@/components/ClientLogos";
+import { ClientGrid, clientSummary } from "@/components/ClientLogos";
 import { CtaBand } from "@/components/CtaBand";
 import { Icon } from "@/components/Icon";
 import { PageHead } from "@/components/PageHead";
@@ -27,9 +27,10 @@ export default function PortfolioPage({ params }: Props) {
       <Section labelledBy="clients">
         <div className="section__head">
           <h2 id="clients">{t(portfolioPage.clientsTitle, locale)}</h2>
+          <p className="section__lead">{clientSummary(locale)}</p>
         </div>
         <Reveal>
-          <ClientLogos locale={locale} />
+          <ClientGrid locale={locale} />
         </Reveal>
       </Section>
 
@@ -50,7 +51,7 @@ export default function PortfolioPage({ params }: Props) {
         <Reveal>
           <div className="grid grid--3">
             {portfolioPage.cases.map((item) => (
-              <article key={item.title.en} className="case">
+              <article key={item.title.en} className="case" data-tilt="4">
                 <p className="deflist__term">{t(item.sector, locale)}</p>
                 <h3>{t(item.title, locale)}</h3>
                 <p>{t(item.body, locale)}</p>

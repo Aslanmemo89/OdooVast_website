@@ -91,7 +91,7 @@ export default function ContactPage({ params }: Props) {
               {rows(locale).map((row) => {
                 const text = row.ltr ? <span className="ltr">{row.value}</span> : row.value;
                 return (
-                  <li key={row.label.en} className="contact-item">
+                  <li key={row.label.en} className="contact-item" data-tilt="4">
                     <span className="contact-item__icon" aria-hidden="true">
                       <Icon name={row.icon} size={20} />
                     </span>

@@ -23,6 +23,7 @@ export function Header({ locale, current }: { locale: Locale; current: PageKey }
       </a>
 
       <header className="header">
+        <span className="header__progress" aria-hidden="true" />
         <div className="container header__inner">
           <Link href={href(locale, "home")} className="brand">
             {/* Decorative: the wordmark beside it already names the company. */}
@@ -66,7 +67,7 @@ export function Header({ locale, current }: { locale: Locale; current: PageKey }
               <LangSwitcher locale={locale} current={current} />
             </div>
 
-            <Link href={href(locale, "contact")} className="btn btn--primary header__cta">
+            <Link href={href(locale, "contact")} className="btn btn--primary header__cta" data-magnetic>
               {t(ui.ctaConsultationShort, locale)}
             </Link>
 

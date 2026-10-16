@@ -7,6 +7,7 @@ export function WhatsAppFab({ locale }: { locale: Locale }) {
   return (
     <a
       className="fab"
+      data-magnetic
       href={waGeneral(locale)}
       target="_blank"
       rel="noopener noreferrer"

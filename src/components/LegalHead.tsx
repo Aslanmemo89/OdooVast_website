@@ -1,4 +1,5 @@
 import { Icon } from "@/components/Icon";
+import { Mark3D } from "@/components/Mark3D";
 import type { LegalDoc } from "@/content/legal";
 import { t, ui, type Locale } from "@/lib/i18n";
 
@@ -9,9 +10,11 @@ import { t, ui, type Locale } from "@/lib/i18n";
  */
 export function LegalHead({ doc, locale }: { doc: LegalDoc; locale: Locale }) {
   return (
-    <div className="pagehead">
+    <div className="pagehead" data-spotlight data-turn="20">
+      <div className="floor" aria-hidden="true" />
+      <Mark3D className="pagehead__mark" />
       <div className="container">
-        <p className="eyebrow">
+        <p className="eyebrow eyebrow--on-dark">
           <Icon name="clock" size={16} />
           {t(ui.legalUpdated, locale)}:{" "}
           <time dateTime={doc.updatedIso}>{t(doc.updated, locale)}</time>

@@ -83,9 +83,9 @@ export const pageMeta: Record<PageKey, PageMeta> = {
       ckb: "خزمەتگوزاری Odoo — جێبەجێکردن، مۆدیوڵی تایبەت و پشتگیری",
     },
     description: {
-      en: "Odoo implementation, custom module development, third-party integrations, support and maintenance, website and eCommerce, accounting, sales, purchase, inventory, MRP and POS.",
-      ar: "تطبيق Odoo، تطوير وحدات مخصّصة، التكامل مع الأنظمة، الدعم والصيانة، الموقع والمتجر الإلكتروني، المحاسبة، المبيعات، المشتريات، المخزون، التصنيع ونقاط البيع.",
-      ckb: "جێبەجێکردنی Odoo، گەشەپێدانی مۆدیوڵی تایبەت، تێکەڵکردن لەگەڵ سیستەمی دەرەکی، پشتگیری و چاکسازی، ماڵپەڕ و فرۆشتنی ئۆنلاین، ژمێریاری، فرۆشتن، کڕین، کۆگا، MRP و POS.",
+      en: "Odoo implementation, custom module development, third-party integrations, support and maintenance, website and eCommerce, mobile applications, accounting, sales, purchase, inventory, MRP and POS.",
+      ar: "تطبيق Odoo، تطوير وحدات مخصّصة، التكامل مع الأنظمة، الدعم والصيانة، الموقع والمتجر الإلكتروني، تطبيقات الموبايل، المحاسبة، المبيعات، المشتريات، المخزون، التصنيع ونقاط البيع.",
+      ckb: "جێبەجێکردنی Odoo، گەشەپێدانی مۆدیوڵی تایبەت، تێکەڵکردن لەگەڵ سیستەمی دەرەکی، پشتگیری و چاکسازی، ماڵپەڕ و فرۆشتنی ئۆنلاین، ئەپی مۆبایل، ژمێریاری، فرۆشتن، کڕین، کۆگا، MRP و POS.",
     },
   },
   industries: {
@@ -107,9 +107,9 @@ export const pageMeta: Record<PageKey, PageMeta> = {
       ckb: "کارەکانمان — ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast",
     },
     description: {
-      en: "Companies running Odoo with OdooVast — Alnajar Steel, Salar Jamal, Diamond Parda Company, Vendor for General Trading, Som and Aljawahir. Detailed case studies are on the way.",
-      ar: "شركات تدير أعمالها بنظام Odoo مع OdooVast — Alnajar Steel وSalar Jamal وDiamond Parda وVendor للتجارة العامة وSom وAljawahir. دراسات الحالة التفصيلية قريباً.",
-      ckb: "ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast — Alnajar Steel، Salar Jamal، Diamond Parda، Vendor، Som و Aljawahir. نموونە پڕۆژە وردەکان لە ڕێگادان.",
+      en: "Companies running Odoo with OdooVast — Alnajar Steel, Salar Jamal, Retal, Vendor for General Trading, Merry An, Som, Brix Burger, Diamond Parda Company and Aljawahir. Detailed case studies are on the way.",
+      ar: "شركات تدير أعمالها بنظام Odoo مع OdooVast — Alnajar Steel وSalar Jamal وRetal وVendor للتجارة العامة وMerry An وSom وBrix Burger وDiamond Parda وAljawahir. دراسات الحالة التفصيلية قريباً.",
+      ckb: "ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast — Alnajar Steel، Salar Jamal، Retal، Vendor، Merry An، Som، Brix Burger، Diamond Parda و Aljawahir. نموونە پڕۆژە وردەکان لە ڕێگادان.",
     },
   },
   contact: {
@@ -183,6 +183,16 @@ export const home = {
     ckb: "OdooVast سیستەمی Odoo ERP بۆ کاروباری عێراق جێبەجێ دەکات، تایبەتمەندی دەکات و پشتگیری دەکات — لە شوێنی بەرهەمهێنانەوە تا باڵانسی دارایی. یەکەم ڕاوێژکاری خۆڕاییە.",
   } satisfies T,
 
+  /** The Odoo apps orbiting the hero's sphere. App names stay Latin in every language. */
+  orbit: [
+    { icon: "accounting", label: "Accounting" },
+    { icon: "sales", label: "Sales" },
+    { icon: "inventory", label: "Inventory" },
+    { icon: "pos", label: "Point of Sale" },
+    { icon: "manufacturing", label: "Manufacturing" },
+    { icon: "purchase", label: "Purchase" },
+  ] satisfies { icon: IconName; label: string }[],
+
   credibilityTitle: {
     en: "Why companies choose an Odoo Partner",
     ar: "لماذا تختار الشركات شريك Odoo",
@@ -239,6 +249,12 @@ export const home = {
     ar: "من عملائنا",
     ckb: "هەندێک لە کڕیارەکانمان",
   } satisfies T,
+  /** The last tile on the client wall — an invitation, linked to the contact page. */
+  clientsNext: {
+    en: "Your company next?",
+    ar: "شركتك هي التالية؟",
+    ckb: "کۆمپانیاکەی تۆ دواتر؟",
+  } satisfies T,
 
   servicesTitle: {
     en: "What we do",
@@ -246,9 +262,9 @@ export const home = {
     ckb: "چی دەکەین",
   } satisfies T,
   servicesLead: {
-    en: "Six things we are asked for most. The full list runs to eleven.",
-    ar: "ست خدمات هي الأكثر طلباً. القائمة الكاملة إحدى عشرة خدمة.",
-    ckb: "شەش شت کە زۆرترین داواکاریمان بۆ دەکرێت. لیستی تەواو یازدەیە.",
+    en: "Six things we are asked for most. The full list runs to twelve.",
+    ar: "ست خدمات هي الأكثر طلباً. القائمة الكاملة اثنتا عشرة خدمة.",
+    ckb: "شەش شت کە زۆرترین داواکاریمان بۆ دەکرێت. لیستی تەواو دوازدەیە.",
   } satisfies T,
 
   industriesTitle: {
@@ -429,9 +445,9 @@ export const servicesPage = {
     ckb: "هەموو ئەوەی بە Odoo دەیکەین",
   } satisfies T,
   lead: {
-    en: "Eleven services. Most projects start with one of the first four and grow from there.",
-    ar: "إحدى عشرة خدمة. تبدأ معظم المشاريع بواحدة من الأربع الأولى ثم تتوسّع.",
-    ckb: "یازدە خزمەتگوزاری. زۆربەی پڕۆژەکان بە یەکێک لە چوار خزمەتگوزاری یەکەم دەست پێدەکەن و پاشان گەورە دەبن.",
+    en: "Twelve services. Most projects start with one of the first four and grow from there.",
+    ar: "اثنتا عشرة خدمة. تبدأ معظم المشاريع بواحدة من الأربع الأولى ثم تتوسّع.",
+    ckb: "دوازدە خزمەتگوزاری. زۆربەی پڕۆژەکان بە یەکێک لە چوار خزمەتگوزاری یەکەم دەست پێدەکەن و پاشان گەورە دەبن.",
   } satisfies T,
 };
 

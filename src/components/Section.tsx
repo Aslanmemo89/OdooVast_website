@@ -15,7 +15,8 @@ export function Section({ children, id, tone = "default", narrow, labelledBy }: 
     .join(" ");
 
   return (
-    <section id={id} className={classes} aria-labelledby={labelledBy}>
+    // data-lens: the faint pointer lens on light sections (src/lib/pointer.ts).
+    <section id={id} className={classes} aria-labelledby={labelledBy} data-lens>
       <div className={narrow ? "container container--narrow" : "container"}>{children}</div>
     </section>
   );
