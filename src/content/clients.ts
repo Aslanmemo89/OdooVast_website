@@ -122,10 +122,8 @@ export const clients: Client[] = [
     height: 280,
   },
   {
-    /* TODO: matched by elimination. The owner described "دیری مۆند" (Derimod
-       clothing; the brand's main branch in Turkey, branches in Erbil and Duhok),
-       and this is the one listed client he did not otherwise describe.
-       Confirm with the owner before going live. */
+    /* The owner's "دیری مۆند": Derimod clothing, main branch in Turkey,
+       branches in Erbil and Duhok. Confirmed by the owner on 2026-10-17. */
     name: "Vendor for General Trading",
     sector: {
       en: "Fashion & apparel",

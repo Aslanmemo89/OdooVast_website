@@ -93,7 +93,10 @@ OdooVast. هەموو ژمارەکان لە یەک شوێندان: `src/content/p
    Odoo بە پێی وڵات نرخ دادەنێت.
 2. لە `rates` ژمارەکان بگۆڕە: `licence` (ستاندارد و تایبەت، ساڵانە و مانگانە،
    لەگەڵ نرخی ئاسایی دوای ١٢ مانگ)، `lightUser`، و `sh` (وۆرکەر، GB، سێرڤەری
-   تایبەت، ژینگەی تاقیکردنەوە).
+   تایبەت، ژینگەی تاقیکردنەوە). پێشنیاری وۆرکەر و GB (`usersPerWorker`،
+   `usersPerGb`) لە فۆرمی کڕینی Odoo وەرگیراوە
+   ([odoo.com/pricing-configurator](https://www.odoo.com/pricing-configurator))؛
+   Odoo هەمیشە لانیکەم یەک ژینگەی تاقیکردنەوە حیساب دەکات (`staging: [1, 20]`).
 3. ڕێکەوتەکە لە `source.checked` و `source.checkedIso` نوێ بکەرەوە.
 4. `npm run build` — کارتەکان، خشتەکان و ژمێرەرەکە هەموویان لەو ژمارانەوە
    دەخوێننەوە.
@@ -166,10 +169,8 @@ OdooVast. هەموو ژمارەکان لە یەک شوێندان: `src/content/p
 | ٤ | هەژماری Instagram ئەگەر هەیە | `src/content/company.ts` → `social.instagram` |
 | ٥ | ساڵی بوون بە هاوبەشی Odoo — بۆ زیادکردن بۆ مێژووەکە | `src/content/timeline.ts` |
 | ٦ | سێ نموونەی پڕۆژەی ڕاستەقینە بە ڕەزامەندی کڕیار (لاپەڕەی کارەکانمان ئێستا بە ئاشکرا نووسراوە «کاتی») | `src/content/pages.ts` → `portfolioPage.cases` |
-| ٧ | پشتڕاستکردنەوەی ئەوەی «دیری مۆند» (Derimod) هەمان Vendor for General Tradingـە | `src/content/clients.ts` |
-| ٨ | مانای «کۆسەرە» (ئامێرێکی Retal) بۆ دەقی ئینگلیزی و عەرەبی | `src/content/clients.ts` |
-| ٩ | ناوەڕۆکی خزمەتگوزاری ئەپی مۆبایل (Android/iOS، ئەپ بۆ کڕیار، App Store) | `src/content/services.ts` |
-| ١٠ | نرخەکانی Odoo هەر چەند مانگێک جارێک لەگەڵ odoo.com پشکنین بکرێنەوە (دوا پشکنین: ١٦ی تشرینی یەکەمی ٢٠٢٦) | `src/content/pricing.ts` → `rates` |
+| ٧ | مانای «کۆسەرە» (ئامێرێکی Retal) بۆ دەقی ئینگلیزی و عەرەبی | `src/content/clients.ts` |
+| ٨ | نرخەکانی Odoo هەر چەند مانگێک جارێک لەگەڵ odoo.com پشکنین بکرێنەوە (دوا پشکنین: ١٦ی تشرینی یەکەمی ٢٠٢٦) | `src/content/pricing.ts` → `rates` |
 
 کاتێک هەر یەکێکیان بۆت هات، فایلەکە بکەرەوە، بەهاکە بگۆڕە،
 `npm run build` بکە و push بکە — تەواو.

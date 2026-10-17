@@ -135,9 +135,9 @@ export const pageMeta: Record<PageKey, PageMeta> = {
       ckb: "پەیوەندی بە OdooVast — هەولێر، عێراق",
     },
     description: {
-      en: "Phone, WhatsApp, email and office address for OdooVast in Erbil, Iraq. Open Saturday to Thursday. Get in touch for a free consultation.",
-      ar: "الهاتف وواتساب والبريد الإلكتروني وعنوان مكتب OdooVast في أربيل، العراق. مفتوح من السبت إلى الخميس. تواصل معنا لاستشارة مجانية.",
-      ckb: "تەلەفۆن، واتسئاپ، ئیمەیڵ و ناونیشانی نووسینگەی OdooVast لە هەولێری عێراق. شەممە تا پێنجشەممە کراوەیە. بۆ ڕاوێژکاری خۆڕایی پەیوەندیمان پێوە بکە.",
+      en: "Phone, WhatsApp, email and office address for OdooVast in Erbil, Iraq. Open Saturday to Thursday, 9 am to 5 pm. Get in touch for a free consultation.",
+      ar: "الهاتف وواتساب والبريد الإلكتروني وعنوان مكتب OdooVast في أربيل، العراق. مفتوح من السبت إلى الخميس، من 9 صباحاً حتى 5 مساءً. تواصل معنا لاستشارة مجانية.",
+      ckb: "تەلەفۆن، واتسئاپ، ئیمەیڵ و ناونیشانی نووسینگەی OdooVast لە هەولێری عێراق. شەممە تا پێنجشەممە، ٩ی بەیانی تا ٥ی ئێوارە کراوەیە. بۆ ڕاوێژکاری خۆڕایی پەیوەندیمان پێوە بکە.",
     },
   },
   privacy: {
@@ -244,16 +244,16 @@ export const home = {
     },
     {
       icon: "support",
-      // Owner, 2026-10-17: Saturday to Thursday (this used to say 24/7).
+      // Owner, 2026-10-17: Saturday to Thursday, 9 am to 5 pm (this used to say 24/7).
       title: {
         en: "Support six days a week",
         ar: "دعم ستة أيام في الأسبوع",
         ckb: "پشتگیری شەش ڕۆژ لە هەفتەدا",
       },
       body: {
-        en: "Saturday to Thursday, in Kurdish, Arabic or English — by phone, WhatsApp or email.",
-        ar: "من السبت إلى الخميس، بالكردية أو العربية أو الإنجليزية — عبر الهاتف أو واتساب أو البريد الإلكتروني.",
-        ckb: "شەممە تا پێنجشەممە، بە کوردی، عەرەبی یان ئینگلیزی — بە تەلەفۆن، واتسئاپ یان ئیمەیڵ.",
+        en: "Saturday to Thursday, 9 am to 5 pm, in Kurdish, Arabic or English — by phone, WhatsApp or email.",
+        ar: "من السبت إلى الخميس، من 9 صباحاً حتى 5 مساءً، بالكردية أو العربية أو الإنجليزية — عبر الهاتف أو واتساب أو البريد الإلكتروني.",
+        ckb: "شەممە تا پێنجشەممە، ٩ی بەیانی تا ٥ی ئێوارە، بە کوردی، عەرەبی یان ئینگلیزی — بە تەلەفۆن، واتسئاپ یان ئیمەیڵ.",
       },
     },
     {

@@ -42,7 +42,8 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
   // null = follow Odoo's advice for the number of users; a number = the visitor's own.
   const [workers, setWorkers] = useState<number | null>(null);
   const [storage, setStorage] = useState<number | null>(null);
-  const [staging, setStaging] = useState(0);
+  // Odoo bills at least one staging environment, so that is where it starts.
+  const [staging, setStaging] = useState(rates.sh.staging[0]);
   const [visitors, setVisitors] = useState(0);
   // What the live region in the receipt says; see speak() below.
   const [spoken, setSpoken] = useState("");
@@ -92,13 +93,15 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
   const place: Hosting =
     plan === "standard" || (hosting === "premise" && !premiseAllowed) ? "online" : hosting;
 
-  // Odoo's advice counts back-end users. Light users are left out of it: many
-  // are employees with no login at all, at a till or on the shop floor.
+  // The same suggestion Odoo's purchase form makes: a worker for every 25
+  // regular users and 1 GB for every 2, rounded up, plus a worker for every
+  // 5,000 website visitors a day. Light users are left out of it: many are
+  // employees with no login at all, at a till or on the shop floor.
   const sh = rates.sh;
   const limits = sh.limits[server];
   const advisedWorkers =
-    1 + Math.floor(users / sh.usersPerWorker) + Math.floor(visitors / sh.visitorsPerWorker);
-  const advisedStorage = Math.max(1, users * sh.gbPerUser);
+    Math.max(1, Math.ceil(users / sh.usersPerWorker)) + Math.floor(visitors / sh.visitorsPerWorker);
+  const advisedStorage = Math.max(1, Math.ceil(users / sh.usersPerGb));
   const wantWorkers = workers ?? advisedWorkers;
   const wantStorage = storage ?? advisedStorage;
   const w = clamp(wantWorkers, limits.workers);
@@ -194,7 +197,7 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
           [
             `${copy.workersLine}: ${n(w)}`,
             `${copy.storageLine}: ${n(gb)} GB`,
-            ...(st > 0 ? [`${copy.stagingLine}: ${n(st)}`] : []),
+            `${copy.stagingLine}: ${n(st)}`,
           ].join(copy.comma);
 
   const whatsapp = waLink(
@@ -217,7 +220,7 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
     setServer("shared");
     setWorkers(null);
     setStorage(null);
-    setStaging(0);
+    setStaging(rates.sh.staging[0]);
     setVisitors(0);
     speak();
   };
@@ -347,6 +350,7 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
                 {...stepper}
                 id="calc-staging"
                 label={copy.staging}
+                hint={copy.stagingHint}
                 value={st}
                 range={sh.staging}
                 onChange={setStaging}
@@ -464,14 +468,12 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
               {dedicated > 0 ? <Line sub label={copy.dedicatedLine} amount={$(dedicated)} /> : null}
               <Line sub label={copy.workersLine} detail={`${n(w)} × ${$(r.worker)}`} amount={$(w * r.worker)} />
               <Line sub label={copy.storageLine} detail={`${n(gb)} GB × ${$(r.gb)}`} amount={$(gb * r.gb)} />
-              {st > 0 ? (
-                <Line
-                  sub
-                  label={copy.stagingLine}
-                  detail={`${n(st)} × ${$(r.staging)}`}
-                  amount={$(st * r.staging)}
-                />
-              ) : null}
+              <Line
+                sub
+                label={copy.stagingLine}
+                detail={`${n(st)} × ${$(r.staging)}`}
+                amount={$(st * r.staging)}
+              />
             </>
           ) : null}
         </dl>

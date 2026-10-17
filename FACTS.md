@@ -31,11 +31,11 @@ Lines marked `TODO:` are **not** confirmed — fill them in or ask before using.
 page owner can open. Visitors get a permission error.
 `TODO: the public LinkedIn company URL`
 
-**Working days — confirmed by the owner on 2026-10-17: Saturday to Thursday.**
-This replaces the "Open 24 hours, 7 days a week" taken from the old site;
-nothing on the site says 24/7 any more. `TODO: the hours of the day` — until
-they are known, the JSON-LD carries no `openingHours` (days alone would tell
-Google the office is open all day).
+**Working hours — confirmed by the owner on 2026-10-17: Saturday to Thursday,
+9 am to 5 pm.** This replaces the "Open 24 hours, 7 days a week" taken from
+the old site; nothing on the site says 24/7 any more. The JSON-LD carries
+the same hours as an `openingHoursSpecification`, Saturday to Thursday,
+09:00–17:00 (`company.hoursSchema`).
 `TODO: Google Maps embed link`
 `TODO: Facebook / Instagram, if any`
 
@@ -56,9 +56,10 @@ Google the office is open all day).
 | Point of Sale (POS) | User-friendly POS system that works online and offline. |
 
 **Added on the owner's request (2026-10-15), not from the live site:**
-Mobile Applications — "mobile apps connected to your Odoo".
-`TODO:` confirm what it includes (iOS as well as Android, apps for customers,
-publishing to the app stores) before relying on the services-page lines.
+Mobile Applications — "mobile apps for Android and iOS — on their own, or
+connected to your Odoo". Confirmed by the owner on 2026-10-17: both Android
+and iOS, apps for customers and for staff, and OdooVast builds apps that stand
+on their own as well as Odoo mobile apps for its clients.
 
 ## Industries — verified
 
@@ -82,7 +83,7 @@ publishing to the app stores) before relying on the services-page lines.
 
 - Certified Odoo Partner
 - Expert team
-- Support Saturday to Thursday (owner, 2026-10-17 — the old site said 24/7)
+- Support Saturday to Thursday, 9 am to 5 pm (owner, 2026-10-17 — the old site said 24/7)
 - Proven results
 - Enterprise excellence
 
@@ -115,9 +116,8 @@ what the owner said. **Never invent a client.**
 | Diamond Parda Company | Zebra and fabric curtains | 1 branch in Erbil |
 | Aljawahir | Iron | 1 branch |
 
-- `TODO:` the owner described "دیری مۆند" (Derimod clothing) — matched to
-  Vendor for General Trading as the one listed client not otherwise
-  described. Confirm.
+- "دیری مۆند" (Derimod clothing), as the owner described it, is Vendor for
+  General Trading — confirmed by the owner on 2026-10-17.
 - `TODO:` "کۆسەرە" (one of Retal's machines) is kept in the Kurdish text
   only; the English and Arabic say "machines such as saws". Confirm the term.
 
@@ -146,8 +146,16 @@ visitor in Iraq (Odoo prices by country; the page reported
 - The lower licence price is a discount for the first 12 months on the
   users ordered at the start.
 - Odoo.sh limits: shared 1–16 workers, 1–512 GB; dedicated 8–256 workers,
-  up to 4096 GB; 0–20 staging environments. Odoo's sizing advice: one more
-  worker per 25 users and per 5,000 website visitors a day; 1 GB per user.
+  up to 4096 GB; 1–20 staging environments. **Odoo always bills at least one
+  staging environment** (owner, 2026-10-17; Odoo's purchase form starts at 1,
+  and setting it to 0 does not lower the price). So the smallest Odoo.sh
+  hosting is $72.20 a month billed yearly ($57.60 + $0.20 + $14.40), or
+  $90.25 billed monthly.
+- Odoo's sizing suggestion, from its purchase form
+  (odoo.com/pricing-configurator, checked on 2026-10-17 from 1 to 1,025
+  users): one worker for every 25 users and 1 GB of storage for every 2
+  users, both rounded up. The help on odoo.sh/pricing adds one more worker
+  for every 5,000 website visitors a day.
 - Light User licences are arranged through an Odoo advisor (customised quote).
 - OdooVast's own implementation prices are **not** published — they are
   quoted after the free consultation. Do not add any.

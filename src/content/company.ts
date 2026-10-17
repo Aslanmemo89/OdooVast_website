@@ -16,6 +16,11 @@ export type Stat = {
   label: T;
 };
 
+type Weekday = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
+
+/** schema.org openingHoursSpecification: the days, and the 24-hour times. */
+export type OpeningHours = { days: Weekday[]; opens: string; closes: string };
+
 export const company = {
   /** Always Latin letters, in all three languages. Never transliterated. */
   name: "OdooVast",
@@ -69,17 +74,22 @@ export const company = {
     countryCode: "IQ",
   },
 
-  /** Owner, 2026-10-17: Saturday to Thursday. The hours of the day are not confirmed yet. */
+  /** Owner, 2026-10-17: Saturday to Thursday, 9 am to 5 pm. */
   hours: {
-    en: "Open Saturday to Thursday",
-    ar: "مفتوح من السبت إلى الخميس",
-    ckb: "شەممە تا پێنجشەممە کراوەیە",
+    en: "Open Saturday to Thursday, 9 am to 5 pm",
+    ar: "مفتوح من السبت إلى الخميس، من 9 صباحاً حتى 5 مساءً",
+    ckb: "شەممە تا پێنجشەممە، ٩ی بەیانی تا ٥ی ئێوارە کراوەیە",
   } satisfies T,
   /**
-   * schema.org openingHours. null until the hours of the day are confirmed:
-   * days alone ("Sa-Th") would tell Google the office is open all day.
+   * The same days and hours, for search engines. Each day is named: a range
+   * such as "Sa-Th" runs past the end of the week, which not every reader of
+   * the data understands. null leaves them out.
    */
-  hoursSchema: null as string | null,
+  hoursSchema: {
+    days: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+    opens: "09:00",
+    closes: "17:00",
+  } as OpeningHours | null,
 
   maps: {
     /** Keyless Google Maps embed, resolved from the address above.

@@ -45,11 +45,17 @@ export type Rates = {
     /** Per month: each worker, each GB, the dedicated server, each staging environment. */
     rates: Record<Billing, { worker: number; gb: number; dedicated: number; staging: number }>;
     limits: Record<"shared" | "dedicated", { workers: Range; storage: Range }>;
+    /** Odoo bills at least one staging environment (the purchase form starts at 1). */
     staging: Range;
-    /** Odoo's sizing advice, from the help beside each row on odoo.sh/pricing. */
+    /**
+     * What Odoo's purchase form (odoo.com/pricing-configurator) suggests:
+     * a worker for every 25 regular users and 1 GB for every 2, both rounded
+     * up — checked on 2026-10-17 from 1 to 1,025 users. The extra worker per
+     * 5,000 website visitors a day is from the help on odoo.sh/pricing.
+     */
     usersPerWorker: number;
     visitorsPerWorker: number;
-    gbPerUser: number;
+    usersPerGb: number;
   };
 };
 
@@ -70,12 +76,24 @@ export const rates: Rates = {
       shared: { workers: [1, 16], storage: [1, 512] },
       dedicated: { workers: [8, 256], storage: [1, 4096] },
     },
-    staging: [0, 20],
+    staging: [1, 20],
     usersPerWorker: 25,
     visitorsPerWorker: 5000,
-    gbPerUser: 1,
+    usersPerGb: 2,
   },
 };
+
+/**
+ * The least Odoo.sh is billed at a month: one worker, one GB and the one
+ * staging environment that is always billed — what Odoo's purchase form shows.
+ * The plan card's "from" price and the table's smallest setup both use it.
+ */
+export function shSmallest(billing: Billing): number {
+  const { sh } = rates;
+  const set = sh.rates[billing];
+  const small = sh.limits.shared;
+  return small.workers[0] * set.worker + small.storage[0] * set.gb + sh.staging[0] * set.staging;
+}
 
 /**
  * Every {token} the copy uses, written out from `rates` in the visitor's
@@ -102,16 +120,15 @@ export function figures(locale: Locale): Record<string, string> {
     dedicatedWorkersMax: n(sh.limits.dedicated.workers[1]),
     sharedGbMax: n(sh.limits.shared.storage[1]),
     dedicatedGbMax: n(sh.limits.dedicated.storage[1]),
+    stagingMin: n(sh.staging[0]),
     stagingMax: n(sh.staging[1]),
     usersPerWorker: n(sh.usersPerWorker),
     visitorsPerWorker: n(sh.visitorsPerWorker),
-    gbPerUser: n(sh.gbPerUser),
+    usersPerGb: n(sh.usersPerGb),
     smallWorkers: n(smallest.workers[0]),
     smallGb: n(smallest.storage[0]),
-    shFrom: usd(
-      smallest.workers[0] * sh.rates.yearly.worker + smallest.storage[0] * sh.rates.yearly.gb,
-      locale,
-    ),
+    smallStaging: n(sh.staging[0]),
+    shFrom: usd(shSmallest("yearly"), locale),
     gbYearly: usd(sh.rates.yearly.gb, locale),
   };
 }
@@ -518,9 +535,9 @@ export const shRows: { key: ShItem; label: T; unit: T; note: T }[] = [
     label: { en: "Staging environment", ar: "بيئة اختبار (Staging)", ckb: "ژینگەی تاقیکردنەوە (Staging)" },
     unit: { en: "per environ\u00ADment / month", ar: "لكل بيئة / شهرياً", ckb: "بۆ هەر ژینگەیەک / مانگانە" },
     note: {
-      en: "A copy for testing changes on your real data. Up to {stagingMax}.",
-      ar: "نسخة لتجربة التغييرات على بياناتك الحقيقية. حتى {stagingMax}.",
-      ckb: "کۆپییەک بۆ تاقیکردنەوەی گۆڕانکاری لەسەر داتای ڕاستەقینەت. تا {stagingMax}.",
+      en: "A copy for testing changes on your real data. Odoo always bills at least {stagingMin}; up to {stagingMax}.",
+      ar: "نسخة لتجربة التغييرات على بياناتك الحقيقية. تحتسب Odoo دائماً {stagingMin} على الأقل، وحتى {stagingMax}.",
+      ckb: "کۆپییەک بۆ تاقیکردنەوەی گۆڕانکاری لەسەر داتای ڕاستەقینەت. Odoo هەمیشە لانیکەم {stagingMin} حیساب دەکات؛ تا {stagingMax}.",
     },
   },
 ];
@@ -698,15 +715,15 @@ export const pricingPage = {
   colYearly: { en: "Yearly billing", ar: "فوترة سنوية", ckb: "پارەدانی ساڵانە" } satisfies T,
   colMonthly: { en: "Monthly billing", ar: "فوترة شهرية", ckb: "پارەدانی مانگانە" } satisfies T,
   shMin: {
-    en: "Smallest setup: {smallWorkers} worker and {smallGb} GB, shared",
-    ar: "أصغر إعداد — العمّال: {smallWorkers}، التخزين: {smallGb} GB، مشترك",
-    ckb: "بچووکترین ڕێکخستن: {smallWorkers} وۆرکەر و {smallGb} GB، هاوبەش",
+    en: "Smallest setup: {smallWorkers} worker, {smallGb} GB and {smallStaging} staging environment, shared",
+    ar: "أصغر إعداد — العمّال: {smallWorkers}، التخزين: {smallGb} GB، بيئات الاختبار: {smallStaging}، مشترك",
+    ckb: "بچووکترین ڕێکخستن: {smallWorkers} وۆرکەر، {smallGb} GB و {smallStaging} ژینگەی تاقیکردنەوە، هاوبەش",
   } satisfies T,
   perMonth: { en: "a month", ar: "شهرياً", ckb: "لە مانگێکدا" } satisfies T,
   shAdvice: {
-    en: "Odoo's advice: one more worker for every {usersPerWorker} back-end users and for every {visitorsPerWorker} website visitors a day, and {gbPerUser} GB of storage per user to start.",
-    ar: "نصيحة Odoo: عامل (Worker) إضافي لكل {usersPerWorker} مستخدماً في الواجهة الخلفية ولكل {visitorsPerWorker} زائر للموقع يومياً، و{gbPerUser} GB من التخزين لكل مستخدم في البداية.",
-    ckb: "ئامۆژگاریی Odoo: وۆرکەرێکی زیاتر بۆ هەر {usersPerWorker} بەکارهێنەری بەشی ناوەوە و بۆ هەر {visitorsPerWorker} سەردانکەری ماڵپەڕ لە ڕۆژێکدا، و {gbPerUser} GB شوێنی هەڵگرتن بۆ هەر بەکارهێنەرێک بۆ دەستپێکردن.",
+    en: "What Odoo's purchase form suggests: a worker for every {usersPerWorker} users (and one more for every {visitorsPerWorker} website visitors a day), 1 GB of storage for every {usersPerGb} users, and at least {stagingMin} staging environment, which is always billed.",
+    ar: "ما يقترحه نموذج الشراء لدى Odoo: عامل (Worker) لكل {usersPerWorker} مستخدماً (وعامل آخر لكل {visitorsPerWorker} زائر للموقع يومياً)، و1 GB من التخزين لكل {usersPerGb} من المستخدمين، وما لا يقل عن {stagingMin} من بيئات الاختبار، تُحتسب دائماً.",
+    ckb: "ئەوەی فۆرمی کڕینی Odoo پێشنیاری دەکات: وۆرکەرێک بۆ هەر {usersPerWorker} بەکارهێنەر (و یەکێکی تر بۆ هەر {visitorsPerWorker} سەردانکەری ماڵپەڕ لە ڕۆژێکدا)، ١ GB شوێنی هەڵگرتن بۆ هەر {usersPerGb} بەکارهێنەر، و لانیکەم {stagingMin} ژینگەی تاقیکردنەوە کە هەمیشە حیساب دەکرێت.",
   } satisfies T,
   shNoLicence: {
     en: "Hosting only — the Custom plan's licence is paid as well.",
@@ -795,13 +812,18 @@ export const calc = {
   workers: { en: "Workers", ar: "العمّال (Workers)", ckb: "وۆرکەر (Workers)" },
   storage: { en: "Storage, GB", ar: "التخزين، GB", ckb: "شوێنی هەڵگرتن، GB" },
   staging: { en: "Staging environments", ar: "بيئات الاختبار", ckb: "ژینگەی تاقیکردنەوە" },
+  stagingHint: {
+    en: "Odoo always bills at least {stagingMin}.",
+    ar: "تحتسب Odoo دائماً {stagingMin} على الأقل.",
+    ckb: "Odoo هەمیشە لانیکەم {stagingMin} حیساب دەکات.",
+  },
   visitors: { en: "Website visitors a day", ar: "زوّار الموقع يومياً", ckb: "سەردانکەری ماڵپەڕ لە ڕۆژێکدا" },
   advice: {
-    en: "Odoo's advice for your back-end users (light users not counted) — workers: {workers}, storage: {storage} GB.",
-    ar: "نصيحة Odoo لمستخدمي الواجهة الخلفية (من غير المستخدمين الخفيفين) — العمّال (Workers): {workers}، التخزين: {storage} GB.",
-    ckb: "ئامۆژگاریی Odoo بۆ بەکارهێنەرانی بەشی ناوەوە (لایت یوزەرەکان ناژمێردرێن) — وۆرکەر: {workers}، شوێنی هەڵگرتن: {storage} GB.",
+    en: "Odoo's suggestion for your users (light users not counted) — workers: {workers}, storage: {storage} GB.",
+    ar: "اقتراح Odoo لعدد مستخدميك (من غير المستخدمين الخفيفين) — العمّال (Workers): {workers}، التخزين: {storage} GB.",
+    ckb: "پێشنیاری Odoo بۆ بەکارهێنەرەکانت (لایت یوزەرەکان ناژمێردرێن) — وۆرکەر: {workers}، شوێنی هەڵگرتن: {storage} GB.",
   },
-  useAdvice: { en: "Use Odoo's advice", ar: "استخدم نصيحة Odoo", ckb: "ئامۆژگارییەکەی Odoo بەکاربهێنە" },
+  useAdvice: { en: "Use Odoo's suggestion", ar: "استخدم اقتراح Odoo", ckb: "پێشنیارەکەی Odoo بەکاربهێنە" },
   sharedWorkersLimit: {
     en: "A shared server takes at most {sharedWorkersMax} workers — choose Dedicated for more.",
     ar: "يأخذ الخادم المشترك {sharedWorkersMax} عاملاً (Worker) كحدّ أقصى — اختر الخادم المستقل للمزيد.",
@@ -901,17 +923,17 @@ export const pricingFaq: { q: T; a: TList }[] = [
       en: [
         "Hosting on Odoo Online with daily backups on two continents, email integration, security and 24/7 monitoring — and every upgrade to a new version.",
         "Unlimited support from Odoo's own team by email, Monday to Friday, in English, French, Spanish or Dutch.",
-        "OdooVast's own support is separate: Saturday to Thursday, in Kurdish, Arabic and English.",
+        "OdooVast's own support is separate: Saturday to Thursday, 9 am to 5 pm, in Kurdish, Arabic and English.",
       ],
       ar: [
         "الاستضافة على Odoo Online مع نسخ احتياطية يومية في قارتين، وربط البريد الإلكتروني، والحماية والمراقبة على مدار الساعة — وكل ترقية إلى إصدار جديد.",
         "دعم غير محدود من فريق Odoo نفسه بالبريد الإلكتروني، من الاثنين إلى الجمعة، بالإنجليزية أو الفرنسية أو الإسبانية أو الهولندية.",
-        "أما دعم OdooVast فمنفصل: من السبت إلى الخميس، بالكردية والعربية والإنجليزية.",
+        "أما دعم OdooVast فمنفصل: من السبت إلى الخميس، من 9 صباحاً حتى 5 مساءً، بالكردية والعربية والإنجليزية.",
       ],
       ckb: [
         "هۆستینگ لەسەر Odoo Online لەگەڵ باکئەپی ڕۆژانە لە دوو کیشوەر، پەیوەندی ئیمەیڵ، پاراستن و چاودێریی ٢٤/٧ — و هەموو بەرزکردنەوەیەک بۆ وەشانی نوێ.",
         "پشتگیریی بێسنوور لە تیمی خودی Odoo بە ئیمەیڵ، دووشەممە تا هەینی، بە ئینگلیزی، فەڕەنسی، ئیسپانی یان هۆڵەندی.",
-        "پشتگیریی OdooVast خۆی جیایە: شەممە تا پێنجشەممە، بە کوردی، عەرەبی و ئینگلیزی.",
+        "پشتگیریی OdooVast خۆی جیایە: شەممە تا پێنجشەممە، ٩ی بەیانی تا ٥ی ئێوارە، بە کوردی، عەرەبی و ئینگلیزی.",
       ],
     },
   },

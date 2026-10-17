@@ -248,8 +248,8 @@ export const services: Service[] = [
   },
   {
     /* Added at the owner's request on 2026-10-15 — not from the live site.
-       TODO: confirm the included lines with the owner (iOS as well as Android?
-       apps for customers as well as staff? publishing to the stores?). */
+       Owner, 2026-10-17: Android and iOS, for customers and for staff, and
+       apps on their own as well as apps connected to Odoo. */
     slug: "mobile-applications",
     icon: "mobile",
     core: false,
@@ -259,13 +259,14 @@ export const services: Service[] = [
       ckb: "ئەپی مۆبایل",
     },
     summary: {
-      en: "Mobile apps connected to your Odoo.",
-      ar: "تطبيقات موبايل مرتبطة بنظام Odoo لديك.",
-      ckb: "ئەپی مۆبایل کە بە Odooی کۆمپانیاکەتەوە بەستراون.",
+      en: "Mobile apps for Android and iOS — on their own, or connected to your Odoo.",
+      ar: "تطبيقات موبايل لأندرويد وiOS — مستقلة، أو مرتبطة بنظام Odoo لديك.",
+      ckb: "ئەپی مۆبایل بۆ Android و iOS — سەربەخۆ، یان بەستراو بە Odooی کۆمپانیاکەتەوە.",
     },
     includes: {
       en: [
         "Android and iOS apps working on your live Odoo data",
+        "Apps that don't need Odoo at all, built around your business",
         "Apps for staff on the move — sales reps, drivers, technicians",
         "Apps for your customers to order and follow their orders",
         "Barcode scanning and photos straight from the phone camera",
@@ -274,6 +275,7 @@ export const services: Service[] = [
       ],
       ar: [
         "تطبيقات أندرويد وiOS تعمل على بيانات Odoo الحيّة",
+        "تطبيقات لا تحتاج إلى Odoo إطلاقاً، مبنية حول عملك",
         "تطبيقات للعاملين خارج المكتب — المندوبين والسائقين والفنيين",
         "تطبيقات لعملائك للطلب ومتابعة طلباتهم",
         "مسح الباركود والتقاط الصور مباشرة من كاميرا الهاتف",
@@ -282,6 +284,7 @@ export const services: Service[] = [
       ],
       ckb: [
         "ئەپی Android و iOS کە لەسەر داتای زیندووی Odoo کار دەکەن",
+        "ئەپی سەربەخۆ کە هیچ پێویستیان بە Odoo نییە، بەپێی کارەکەت دروست دەکرێن",
         "ئەپ بۆ کارمەندانی دەرەوەی نووسینگە — نوێنەری فرۆشتن، شۆفێر، تەکنیککار",
         "ئەپ بۆ کڕیارەکانت بۆ داواکردن و بەدواداچوونی داواکارییەکانیان",
         "سکانکردنی بارکۆد و گرتنی وێنە ڕاستەوخۆ لە کامێرای مۆبایل",
@@ -290,9 +293,9 @@ export const services: Service[] = [
       ],
     },
     suitedFor: {
-      en: "Companies whose people work away from a desk, or whose customers would rather order from a phone.",
-      ar: "الشركات التي يعمل موظفوها بعيداً عن المكتب، أو التي يفضّل عملاؤها الطلب من الهاتف.",
-      ckb: "ئەو کۆمپانیایانەی کارمەندەکانیان دوور لە مێز کار دەکەن، یان کڕیارەکانیان پێیان باشترە لە مۆبایلەوە داوا بکەن.",
+      en: "Companies whose people work away from a desk, whose customers would rather order from a phone, or who want an app of their own.",
+      ar: "الشركات التي يعمل موظفوها بعيداً عن المكتب، أو التي يفضّل عملاؤها الطلب من الهاتف، أو التي تريد تطبيقاً خاصاً بها.",
+      ckb: "ئەو کۆمپانیایانەی کارمەندەکانیان دوور لە مێز کار دەکەن، یان کڕیارەکانیان پێیان باشترە لە مۆبایلەوە داوا بکەن، یان ئەپێکی تایبەت بە خۆیان دەوێت.",
     },
   },
   {

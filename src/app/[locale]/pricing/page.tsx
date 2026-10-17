@@ -21,6 +21,7 @@ import {
   rates,
   shIncluded,
   shRows,
+  shSmallest,
   source,
   userRows,
   type Billing,
@@ -204,7 +205,6 @@ export default function PricingPage({ params }: Props) {
   const $ = (amount: number) => usd(amount, locale);
   const shYearly = rates.sh.rates.yearly;
   const shMonthly = rates.sh.rates.monthly;
-  const smallest = rates.sh.limits.shared;
 
   return (
     <PageShell locale={locale} current="pricing">
@@ -546,11 +546,9 @@ export default function PricingPage({ params }: Props) {
                     ))}
                     <tr className="compare__total">
                       <th scope="row">{say(copy.shMin)}</th>
-                      {[shYearly, shMonthly].map((set, index) => (
-                        <td key={index}>
-                          <span className="compare__amount ltr">
-                            {$(smallest.workers[0] * set.worker + smallest.storage[0] * set.gb)}
-                          </span>
+                      {(["yearly", "monthly"] as const).map((billing) => (
+                        <td key={billing}>
+                          <span className="compare__amount ltr">{$(shSmallest(billing))}</span>
                           <span className="compare__unit">{t(copy.perMonth, locale)}</span>
                         </td>
                       ))}
