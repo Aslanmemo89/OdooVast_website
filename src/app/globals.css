@@ -5113,16 +5113,41 @@ a.contact-item__value:hover {
   transform-origin: 50% 0;
 }
 
-.receipt__per,
-.receipt__year {
+.receipt__per {
   font-size: var(--text-sm);
   color: var(--on-dark-muted);
 }
 
-/* "Billed once a year" on a line of its own, so it never splits the
-   sentence before it. */
-.receipt__billed {
-  display: block;
+/* The year, as plainly as the month: the first year, and each year after it
+   once the first-year discount has ended. */
+.receipt__years {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 0.07);
+}
+
+.receipt__year {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+}
+
+.receipt__year dt {
+  font-size: var(--text-sm);
+  color: #fff;
+}
+
+.receipt__year dd {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
 }
 
 .receipt__lines {
@@ -5168,14 +5193,6 @@ a.contact-item__value:hover {
   display: block;
   font-size: var(--text-xs);
   color: var(--on-dark-muted);
-}
-
-.receipt__later {
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius);
-  background: rgb(255 255 255 / 0.07);
-  font-size: var(--text-sm);
-  color: #ead2fb;
 }
 
 .receipt__note {

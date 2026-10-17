@@ -140,7 +140,7 @@ export function figures(locale: Locale): Record<string, string> {
  * build stops here, so the Arabic wording is changed along with them.
  */
 const ARABIC_FORMS: [value: number, form: Intl.LDMLPluralRule, used: string][] = [
-  [rates.discountMonths, "many", "noteDiscount, calc.later, thenRegular, fullPrice, the FAQ: شهراً"],
+  [rates.discountMonths, "many", "noteDiscount, thenRegular, fullPrice, the FAQ: شهراً"],
   [rates.sh.usersPerWorker, "many", "shAdvice: مستخدماً"],
   [rates.sh.visitorsPerWorker, "other", "shAdvice: زائر"],
   [rates.sh.limits.shared.workers[1], "many", "calc.sharedWorkersLimit: عاملاً"],
@@ -858,8 +858,9 @@ export const calc = {
   more: { en: "More", ar: "أكثر", ckb: "زیاتر" },
   result: { en: "Your estimate", ar: "تقديرك", ckb: "خەمڵاندنەکەت" },
   perMonth: { en: "a month", ar: "شهرياً", ckb: "لە مانگێکدا" },
-  /** After the yearly figure, which is the first year's: the discount ends after it. */
-  perYear: { en: "in the first year", ar: "في السنة الأولى", ckb: "لە ساڵی یەکەمدا" },
+  /** The receipt's year table: the first year has the discount, the years after do not. */
+  firstYear: { en: "First year", ar: "السنة الأولى", ckb: "ساڵی یەکەم" },
+  laterYears: { en: "Each year after", ar: "كل سنة بعدها", ckb: "هەر ساڵێکی دواتر" },
   billedOnce: { en: "billed once a year", ar: "تُدفع مرة في السنة", ckb: "ساڵی جارێک پارە دەدرێت" },
   licence: { en: "Licence", ar: "الترخيص", ckb: "مۆڵەت" },
   lightLine: { en: "Light users", ar: "المستخدمون الخفيفون", ckb: "لایت یوزەرەکان" },
@@ -871,7 +872,6 @@ export const calc = {
   workersLine: { en: "Workers", ar: "العمّال (Workers)", ckb: "وۆرکەر" },
   storageLine: { en: "Storage", ar: "التخزين", ckb: "شوێنی هەڵگرتن" },
   stagingLine: { en: "Staging", ar: "بيئات الاختبار", ckb: "ژینگەی تاقیکردنەوە" },
-  later: { en: "After the first {months} months", ar: "بعد أول {months} شهراً", ckb: "دوای {months} مانگی یەکەم" },
   notCovered: {
     en: "Not in this estimate: implementation, training, custom development and In-App Purchase credits such as SMS.",
     // «تطبيق النظام», not «التطبيق»: on this page تطبيق is an app.
@@ -883,9 +883,9 @@ export const calc = {
   /** Between the parts of a list inside a line of the message. */
   comma: { en: ", ", ar: "، ", ckb: "، " },
   message: {
-    en: "Hello OdooVast, I estimated my Odoo cost on your website.\n\nPlan: {plan} ({billing})\nUsers: {users}\nLight users: {light}\nHosting: {hosting}\nEstimate: {total} a month\n\nCould you give me a quote for the implementation?",
-    ar: "مرحباً OdooVast، قدّرتُ تكلفة Odoo على موقعكم.\n\nالخطة: {plan} ({billing})\nالمستخدمون: {users}\nالمستخدمون الخفيفون: {light}\nالاستضافة: {hosting}\nالتقدير: {total} شهرياً\n\nهل يمكنكم إعطائي عرض سعر لتطبيق النظام؟",
-    ckb: "سڵاو OdooVast، تێچووی Odooم لە ماڵپەڕەکەتان خەمڵاند.\n\nپلان: {plan} ({billing})\nبەکارهێنەران: {users}\nلایت یوزەرەکان: {light}\nهۆستینگ: {hosting}\nخەمڵاندن: {total} لە مانگێکدا\n\nدەتوانن نرخی جێبەجێکردنم بۆ دیاری بکەن؟",
+    en: "Hello OdooVast, I estimated my Odoo cost on your website.\n\nPlan: {plan} ({billing})\nUsers: {users}\nLight users: {light}\nHosting: {hosting}\nEstimate: {total} a month, {year} in the first year\n\nCould you give me a quote for the implementation?",
+    ar: "مرحباً OdooVast، قدّرتُ تكلفة Odoo على موقعكم.\n\nالخطة: {plan} ({billing})\nالمستخدمون: {users}\nالمستخدمون الخفيفون: {light}\nالاستضافة: {hosting}\nالتقدير: {total} شهرياً، {year} في السنة الأولى\n\nهل يمكنكم إعطائي عرض سعر لتطبيق النظام؟",
+    ckb: "سڵاو OdooVast، تێچووی Odooم لە ماڵپەڕەکەتان خەمڵاند.\n\nپلان: {plan} ({billing})\nبەکارهێنەران: {users}\nلایت یوزەرەکان: {light}\nهۆستینگ: {hosting}\nخەمڵاندن: {total} لە مانگێکدا، {year} لە ساڵی یەکەمدا\n\nدەتوانن نرخی جێبەجێکردنم بۆ دیاری بکەن؟",
   },
   /** Read out to screen readers a moment after the visitor changes something. */
   live: {

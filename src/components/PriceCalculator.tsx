@@ -134,6 +134,9 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
     place === "sh" ? dedicated + w * r.worker + gb * r.gb + st * r.staging : 0;
   const month = licence + lightCost + hostingCost;
   const later = users * rates.licence[plan].regular[billing] + lightCost + hostingCost;
+  // The first year: the discounted months, then any left at the regular price.
+  const discounted = Math.min(rates.discountMonths, 12);
+  const firstYear = month * discounted + later * (12 - discounted);
 
   const $ = (amount: number) => usd(amount, locale);
   const n = (value: number) => grouped(value, locale);
@@ -208,6 +211,7 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
       light: n(light),
       hosting: hostingText,
       total,
+      year: $(firstYear),
     }),
   );
 
@@ -427,10 +431,28 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
           </span>
           <span className="receipt__per">{copy.perMonth}</span>
         </p>
-        <p className="receipt__year">
-          <span className="ltr">{$(month * 12)}</span> {copy.perYear}
-          {billing === "yearly" ? <span className="receipt__billed">{copy.billedOnce}</span> : null}
-        </p>
+        {/* The year as plainly as the month: the first year, and each year
+            after it, once the first-year discount has ended. */}
+        <dl className="receipt__years">
+          <div className="receipt__year">
+            <dt>
+              {copy.firstYear}
+              {billing === "yearly" ? <span className="receipt__detail">{copy.billedOnce}</span> : null}
+            </dt>
+            <dd className="ltr">{$(firstYear)}</dd>
+          </div>
+          {later > month ? (
+            <div className="receipt__year">
+              <dt>
+                {copy.laterYears}
+                <span className="receipt__detail">
+                  <span className="ltr">{$(later)}</span> {copy.perMonth}
+                </span>
+              </dt>
+              <dd className="ltr">{$(later * 12)}</dd>
+            </div>
+          ) : null}
+        </dl>
 
         {/* Straight under the total: however long the breakdown grows, the
             way to send it stays in view. */}
@@ -478,11 +500,6 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
           ) : null}
         </dl>
 
-        {later > month ? (
-          <p className="receipt__later">
-            {copy.later}: <span className="ltr">{$(later)}</span> {copy.perMonth}
-          </p>
-        ) : null}
         <p className="receipt__note">{copy.notCovered}</p>
 
         <button type="button" className="receipt__reset" onClick={reset}>
