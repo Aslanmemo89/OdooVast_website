@@ -467,9 +467,10 @@ export const about = {
 
 export const servicesPage = {
   h1: {
-    en: "Everything we do with Odoo",
-    ar: "كل ما نقدّمه عبر Odoo",
-    ckb: "هەموو ئەوەی بە Odoo دەیکەین",
+    // Not "with Odoo": some of the mobile apps need no Odoo at all.
+    en: "Everything we do",
+    ar: "كل ما نقدّمه",
+    ckb: "هەموو ئەوەی دەیکەین",
   } satisfies T,
   lead: {
     en: "Twelve services. Most projects start with one of the first four and grow from there.",

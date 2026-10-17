@@ -60,6 +60,8 @@ Mobile Applications — "mobile apps for Android and iOS — on their own, or
 connected to your Odoo". Confirmed by the owner on 2026-10-17: both Android
 and iOS, apps for customers and for staff, and OdooVast builds apps that stand
 on their own as well as Odoo mobile apps for its clients.
+`TODO:` confirm publishing to Google Play and the App Store, and ongoing
+updates, before relying on that services-page line.
 
 ## Industries — verified
 
@@ -147,8 +149,9 @@ visitor in Iraq (Odoo prices by country; the page reported
   users ordered at the start.
 - Odoo.sh limits: shared 1–16 workers, 1–512 GB; dedicated 8–256 workers,
   up to 4096 GB; 1–20 staging environments. **Odoo always bills at least one
-  staging environment** (owner, 2026-10-17; Odoo's purchase form starts at 1,
-  and setting it to 0 does not lower the price). So the smallest Odoo.sh
+  staging environment** (owner, 2026-10-17; on odoo.com/pricing-configurator
+  the staging box starts at 1, and typing 0 leaves the total unchanged —
+  checked on 2026-10-17). So the smallest Odoo.sh
   hosting is $72.20 a month billed yearly ($57.60 + $0.20 + $14.40), or
   $90.25 billed monthly.
 - Odoo's sizing suggestion, from its purchase form

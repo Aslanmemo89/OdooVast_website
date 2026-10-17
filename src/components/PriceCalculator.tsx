@@ -93,10 +93,10 @@ export function PriceCalculator({ locale, rates, copy, planNames, billingGroup }
   const place: Hosting =
     plan === "standard" || (hosting === "premise" && !premiseAllowed) ? "online" : hosting;
 
-  // The same suggestion Odoo's purchase form makes: a worker for every 25
-  // regular users and 1 GB for every 2, rounded up, plus a worker for every
-  // 5,000 website visitors a day. Light users are left out of it: many are
-  // employees with no login at all, at a till or on the shop floor.
+  // Odoo's purchase form suggests a worker for every 25 regular users and
+  // 1 GB for every 2, rounded up; the help on odoo.sh/pricing adds a worker
+  // for every 5,000 website visitors a day. Light users are left out of it:
+  // many are employees with no login at all, at a till or on the shop floor.
   const sh = rates.sh;
   const limits = sh.limits[server];
   const advisedWorkers =

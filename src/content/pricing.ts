@@ -721,9 +721,9 @@ export const pricingPage = {
   } satisfies T,
   perMonth: { en: "a month", ar: "شهرياً", ckb: "لە مانگێکدا" } satisfies T,
   shAdvice: {
-    en: "What Odoo's purchase form suggests: a worker for every {usersPerWorker} users (and one more for every {visitorsPerWorker} website visitors a day), 1 GB of storage for every {usersPerGb} users, and at least {stagingMin} staging environment, which is always billed.",
-    ar: "ما يقترحه نموذج الشراء لدى Odoo: عامل (Worker) لكل {usersPerWorker} مستخدماً (وعامل آخر لكل {visitorsPerWorker} زائر للموقع يومياً)، و1 GB من التخزين لكل {usersPerGb} من المستخدمين، وما لا يقل عن {stagingMin} من بيئات الاختبار، تُحتسب دائماً.",
-    ckb: "ئەوەی فۆرمی کڕینی Odoo پێشنیاری دەکات: وۆرکەرێک بۆ هەر {usersPerWorker} بەکارهێنەر (و یەکێکی تر بۆ هەر {visitorsPerWorker} سەردانکەری ماڵپەڕ لە ڕۆژێکدا)، ١ GB شوێنی هەڵگرتن بۆ هەر {usersPerGb} بەکارهێنەر، و لانیکەم {stagingMin} ژینگەی تاقیکردنەوە کە هەمیشە حیساب دەکرێت.",
+    en: "What Odoo suggests: a worker for every {usersPerWorker} users (and one more for every {visitorsPerWorker} website visitors a day), 1 GB of storage for every {usersPerGb} users, and at least {stagingMin} staging environment, which is always billed.",
+    ar: "ما تقترحه Odoo: عامل (Worker) لكل {usersPerWorker} مستخدماً (وعامل آخر لكل {visitorsPerWorker} زائر للموقع يومياً)، و1 GB من التخزين لكل {usersPerGb} من المستخدمين، وبيئات اختبار لا يقل عددها عن {stagingMin}، تحتسبها Odoo دائماً.",
+    ckb: "ئەوەی Odoo پێشنیاری دەکات: وۆرکەرێک بۆ هەر {usersPerWorker} بەکارهێنەر (و یەکێکی تر بۆ هەر {visitorsPerWorker} سەردانکەری ماڵپەڕ لە ڕۆژێکدا)، ١ GB شوێنی هەڵگرتن بۆ هەر {usersPerGb} بەکارهێنەر، و لانیکەم {stagingMin} ژینگەی تاقیکردنەوە کە هەمیشە حیساب دەکرێت.",
   } satisfies T,
   shNoLicence: {
     en: "Hosting only — the Custom plan's licence is paid as well.",
@@ -905,15 +905,15 @@ export const pricingFaq: { q: T; a: TList }[] = [
     a: {
       en: [
         "No. They are the prices Odoo publishes for its own licences and hosting in Iraq — the cost of the software itself.",
-        "Our work — setting Odoo up, moving your data, training your team, building what you need and supporting you in Kurdish, Arabic and English, Saturday to Thursday — is separate. We quote it after a free consultation.",
+        "Our work — setting Odoo up, moving your data, training your team, building what you need and supporting you in Kurdish, Arabic and English, Saturday to Thursday, 9 am to 5 pm — is separate. We quote it after a free consultation.",
       ],
       ar: [
         "لا. إنها الأسعار التي تنشرها Odoo لتراخيصها واستضافتها في العراق — أي كلفة البرنامج نفسه.",
-        "عملنا — إعداد Odoo ونقل بياناتك وتدريب فريقك وبناء ما تحتاجه ودعمك بالكردية والعربية والإنجليزية من السبت إلى الخميس — منفصل، ونقدّم عرض سعره بعد استشارة مجانية.",
+        "عملنا — إعداد Odoo ونقل بياناتك وتدريب فريقك وبناء ما تحتاجه ودعمك بالكردية والعربية والإنجليزية من السبت إلى الخميس، من 9 صباحاً حتى 5 مساءً — منفصل، ونقدّم عرض سعره بعد استشارة مجانية.",
       ],
       ckb: [
         "نەخێر. ئەمانە ئەو نرخانەن کە Odoo بۆ مۆڵەت و هۆستینگی خۆی لە عێراق بڵاویان دەکاتەوە — واتە تێچووی خودی نەرمەکاڵاکە.",
-        "کاری ئێمە — ڕێکخستنی Odoo، گواستنەوەی داتاکانت، ڕاهێنانی تیمەکەت، دروستکردنی ئەوەی پێویستتە و پشتگیریکردنت بە کوردی، عەرەبی و ئینگلیزی، شەممە تا پێنجشەممە — جیایە، و دوای ڕاوێژکارییەکی خۆڕایی نرخی بۆ دیاری دەکەین.",
+        "کاری ئێمە — ڕێکخستنی Odoo، گواستنەوەی داتاکانت، ڕاهێنانی تیمەکەت، دروستکردنی ئەوەی پێویستتە و پشتگیریکردنت بە کوردی، عەرەبی و ئینگلیزی، شەممە تا پێنجشەممە، ٩ی بەیانی تا ٥ی ئێوارە — جیایە، و دوای ڕاوێژکارییەکی خۆڕایی نرخی بۆ دیاری دەکەین.",
       ],
     },
   },

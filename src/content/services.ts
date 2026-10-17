@@ -249,7 +249,9 @@ export const services: Service[] = [
   {
     /* Added at the owner's request on 2026-10-15 — not from the live site.
        Owner, 2026-10-17: Android and iOS, for customers and for staff, and
-       apps on their own as well as apps connected to Odoo. */
+       apps on their own as well as apps connected to Odoo.
+       TODO: publishing to Google Play and the App Store, and ongoing updates
+       (the last "includes" line), are not confirmed yet — ask the owner. */
     slug: "mobile-applications",
     icon: "mobile",
     core: false,

@@ -83,13 +83,14 @@ export const company = {
   /**
    * The same days and hours, for search engines. Each day is named: a range
    * such as "Sa-Th" runs past the end of the week, which not every reader of
-   * the data understands. null leaves them out.
+   * the data understands. `satisfies` checks the day names and fields; null
+   * leaves them out.
    */
   hoursSchema: {
     days: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
     opens: "09:00",
     closes: "17:00",
-  } as OpeningHours | null,
+  } satisfies OpeningHours as OpeningHours | null,
 
   maps: {
     /** Keyless Google Maps embed, resolved from the address above.
