@@ -39,7 +39,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
       addressRegion: t(company.address.region, locale),
       addressCountry: company.address.countryCode,
     },
-    openingHours: company.hoursSchema,
+    ...(company.hoursSchema ? { openingHours: company.hoursSchema } : {}),
     availableLanguage: locales.map((code) => htmlLang[code]),
     areaServed: [
       { "@type": "Country", name: t(company.address.country, locale) },

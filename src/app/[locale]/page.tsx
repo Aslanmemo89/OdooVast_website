@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ClientWall, clientSummary } from "@/components/ClientLogos";
+import { ClientFigures, ClientWall } from "@/components/ClientLogos";
 import { CtaBand } from "@/components/CtaBand";
 import { Hero } from "@/components/Hero";
 import { Icon } from "@/components/Icon";
@@ -57,7 +57,7 @@ export default function HomePage({ params }: Props) {
         <Section labelledBy="clients">
           <div className="section__head section__head--center">
             <h2 id="clients">{t(home.clientsTitle, locale)}</h2>
-            <p className="section__lead">{clientSummary(locale)}</p>
+            <ClientFigures locale={locale} />
           </div>
           <ClientWall locale={locale} />
         </Section>

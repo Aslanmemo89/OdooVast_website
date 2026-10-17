@@ -44,6 +44,18 @@ const SCROLL_TURN = 0.0022;
 /** The pointer's trail of pixels: how many at once and how long each lives (ms). */
 const TRAIL = 12;
 const TRAIL_LIFE = 700;
+/**
+ * How the apps feed each other, by the chips' data-orbit names: goods into
+ * Inventory (lavender, palette 0), money into Accounting (gold, palette 3).
+ */
+const LINKS = [
+  ["sales", "inventory", 0],
+  ["purchase", "inventory", 0],
+  ["manufacturing", "inventory", 0],
+  ["inventory", "accounting", 3],
+  ["pos", "accounting", 3],
+  ["sales", "accounting", 3],
+] as const;
 
 type Ring = (typeof RINGS)[number];
 type Dot = { x: number; y: number; z: number; fx: number; fy: number; fz: number; tone: number };
@@ -95,7 +107,12 @@ export function HeroScene({ core, children }: { core: ReactNode; children: React
       const ring = i % RINGS.length;
       const start = RINGS[ring]?.start ?? 0;
       // Evenly spaced around their orbit from that orbit's start.
-      return { el, ring, phase: start + (Math.floor(i / RINGS.length) / perRing) * Math.PI * 2 };
+      return {
+        el,
+        app: el.dataset.orbit ?? "",
+        ring,
+        phase: start + (Math.floor(i / RINGS.length) / perRing) * Math.PI * 2,
+      };
     });
 
     let width = 0;
@@ -299,6 +316,7 @@ export function HeroScene({ core, children }: { core: ReactNode; children: React
       }
 
       // Chips ride the orbits, scaled and layered by depth.
+      const spots = new Map<string, { x: number; y: number }>();
       for (const chip of chips) {
         const ring = RINGS[chip.ring] ?? RINGS[0];
         const p = ringPoint(ring, chip.phase + turn * ring.follow, ax, tiltY);
@@ -306,10 +324,63 @@ export function HeroScene({ core, children }: { core: ReactNode; children: React
         const near = p.z > -0.2;
         const sx = cx + p.x * radius * s;
         const sy = cy - p.y * radius * s;
+        spots.set(chip.app, { x: sx, y: sy });
         chip.el.style.transform = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0) translate(-50%, -50%) scale(${(0.62 + 0.32 * s).toFixed(3)})`;
         chip.el.style.opacity = ((near ? 1 : 0.42) * assembled).toFixed(3);
         chip.el.style.zIndex = near ? "4" : "1";
       }
+
+      // The apps are one system: faint links bowing through the sphere, and —
+      // while anything moves — packets of light running along them, gold
+      // where money flows into Accounting, lavender where goods flow into
+      // Inventory. At rest the packets have faded and only the links remain.
+      const flow = reduce
+        ? 0
+        : assembled *
+          Math.max(clamp((restAt - t) / 0.8, 0, 1), clamp(1 - (now - lastInput) / 1400, 0, 1));
+      back.lineWidth = 1;
+      back.setLineDash([3, 6]);
+      LINKS.forEach(([from, to, tone], i) => {
+        const a = spots.get(from);
+        const b = spots.get(to);
+        if (!a || !b) return;
+        // The curve bends toward the centre, so the links pass through the sphere.
+        const qx = (a.x + b.x) / 2 + (cx - (a.x + b.x) / 2) * 0.45;
+        const qy = (a.y + b.y) / 2 + (cy - (a.y + b.y) / 2) * 0.45;
+        back.globalAlpha = 0.22 * assembled;
+        back.strokeStyle = PALETTE[tone];
+        back.beginPath();
+        back.moveTo(a.x, a.y);
+        back.quadraticCurveTo(qx, qy, b.x, b.y);
+        back.stroke();
+        if (flow <= 0.01) return;
+        const head = (t * 0.32 + i * 0.17) % 1;
+        for (let k = 0; k < 4; k++) {
+          const u = head - k * 0.025;
+          if (u < 0) break;
+          const v = 1 - u;
+          const px = v * v * a.x + 2 * v * u * qx + u * u * b.x;
+          const py = v * v * a.y + 2 * v * u * qy + u * u * b.y;
+          front.globalAlpha = flow * (k === 0 ? 1 : 0.45 / k);
+          front.fillStyle = PALETTE[tone];
+          front.beginPath();
+          front.arc(px, py, k === 0 ? 2.6 : 1.8, 0, Math.PI * 2);
+          front.fill();
+        }
+        // A soft halo around the head of each packet.
+        front.globalAlpha = flow * 0.25;
+        front.beginPath();
+        const v = 1 - head;
+        front.arc(
+          v * v * a.x + 2 * v * head * qx + head * head * b.x,
+          v * v * a.y + 2 * v * head * qy + head * head * b.y,
+          7,
+          0,
+          Math.PI * 2,
+        );
+        front.fill();
+      });
+      back.setLineDash([]);
 
       // The mark turns toward the pointer like a real object would.
       coreEl.style.setProperty("--ry", `${(tiltY * 46).toFixed(2)}deg`);

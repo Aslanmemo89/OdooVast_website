@@ -46,6 +46,8 @@ export type Client = {
   /** The main branch of the brand the client sells, when it is outside Iraq. */
   headOffice?: Place;
   logo: string;
+  /** The logo's own brand colour (sampled from the artwork) — its glow on hover. */
+  tint: string;
   width: number;
   height: number;
   /** True when the artwork carries its own dark background tile. */
@@ -68,6 +70,7 @@ export const clients: Client[] = [
     branches: [{ place: "erbil" }],
     factories: 4,
     logo: "/clients/alnajar-steel.png",
+    tint: "#2f3a8f",
     width: 748,
     height: 662,
   },
@@ -88,6 +91,7 @@ export const clients: Client[] = [
       { place: "baghdad", count: 2 },
     ],
     logo: "/clients/salar-jamal.png",
+    tint: "#2a7a74",
     width: 900,
     height: 1163,
   },
@@ -113,6 +117,7 @@ export const clients: Client[] = [
       { place: "china" },
     ],
     logo: "/clients/retal.png",
+    tint: "#5d5b5c",
     width: 600,
     height: 280,
   },
@@ -135,6 +140,7 @@ export const clients: Client[] = [
     branches: [{ place: "erbil" }, { place: "duhok" }],
     headOffice: "turkey",
     logo: "/clients/vendor-trading.jpg",
+    tint: "#3f7fe6",
     width: 900,
     height: 605,
   },
@@ -152,6 +158,7 @@ export const clients: Client[] = [
     },
     branches: [{ place: "erbil", count: 2 }],
     logo: "/clients/merry-an.png",
+    tint: "#d9a21b",
     width: 356,
     height: 134,
   },
@@ -171,6 +178,7 @@ export const clients: Client[] = [
     branches: [{ place: "baghdad" }, { place: "erbil" }],
     branchTotal: 2,
     logo: "/clients/som.png",
+    tint: "#fb8c23",
     width: 1200,
     height: 757,
   },
@@ -188,6 +196,7 @@ export const clients: Client[] = [
     },
     branches: [{ place: "erbil" }],
     logo: "/clients/brix-burger.png",
+    tint: "#f0663a",
     width: 420,
     height: 343,
   },
@@ -205,6 +214,7 @@ export const clients: Client[] = [
     },
     branches: [{ place: "erbil", count: 1 }],
     logo: "/clients/diamond-parda.jpg",
+    tint: "#f2c230",
     width: 354,
     height: 350,
     darkArtwork: true,
@@ -224,6 +234,7 @@ export const clients: Client[] = [
     branches: [],
     branchTotal: 1,
     logo: "/clients/aljawahir.png",
+    tint: "#f5a524",
     width: 1950,
     height: 1436,
   },

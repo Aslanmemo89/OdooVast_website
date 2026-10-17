@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
+import { FigureCount } from "@/components/FigureCount";
 import { Icon, type IconName } from "@/components/Icon";
 import { branchCount, clients, footprint, places, type Client } from "@/content/clients";
 import { home, href } from "@/content/pages";
-import { counts, num, t, tn, ui, type Locale } from "@/lib/i18n";
+import { counts, figureLabels, num, t, tn, ui, type Locale } from "@/lib/i18n";
 
 /**
  * The logo on its plate — white for most artwork, its own dark tile for the
@@ -19,14 +21,35 @@ function Plate({ client, sizes }: { client: Client; sizes: string }) {
   );
 }
 
-/** "9 companies · 4 cities in Iraq · 2 countries abroad", counted from the list itself. */
-export function clientSummary(locale: Locale): string {
+/**
+ * "9 companies · 4 cities in Iraq · 2 countries abroad", counted from the
+ * list itself. Screen readers get the sentence; on screen each number is
+ * drawn by CSS from `--to`, and FigureCount has it count up to that value
+ * the first time it comes into view.
+ */
+export function ClientFigures({ locale }: { locale: Locale }) {
   const { companies, cities, countries } = footprint();
-  return [
-    tn(counts.companies, companies, locale),
-    tn(counts.citiesInIraq, cities, locale),
-    tn(counts.countriesAbroad, countries, locale),
-  ].join(" · ");
+  const figures = [
+    { n: companies, said: counts.companies, label: figureLabels.companies },
+    { n: cities, said: counts.citiesInIraq, label: figureLabels.citiesInIraq },
+    { n: countries, said: counts.countriesAbroad, label: figureLabels.countriesAbroad },
+  ];
+  return (
+    <>
+      <ul className="figures">
+        {figures.map((figure) => (
+          <li key={figure.said.en.other} className="figure">
+            <span className="sr-only">{tn(figure.said, figure.n, locale)}</span>
+            <span className="figure__num" style={{ "--to": figure.n } as CSSProperties} aria-hidden="true" />
+            <span className="figure__label" aria-hidden="true">
+              {tn(figure.label, figure.n, locale)}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <FigureCount />
+    </>
+  );
 }
 
 /**
@@ -41,7 +64,7 @@ export function ClientWall({ locale }: { locale: Locale }) {
     <ul className="wall" data-glow-group>
       {clients.map((client) => (
         <li key={client.name} className="wall__slot">
-          <div className="plaque" data-tilt="7" data-glow>
+          <div className="plaque" data-tilt="7" data-glow style={{ "--tint": client.tint } as CSSProperties}>
             <Plate client={client} sizes="(min-width: 52rem) 190px, calc(50vw - 4.5rem)" />
             <p className="plaque__name ltr">{client.name}</p>
             <p className="plaque__sector">{t(client.sector, locale)}</p>
@@ -100,7 +123,13 @@ export function ClientGrid({ locale }: { locale: Locale }) {
         const perCity = client.branches.length > 1;
         const list = facts(client, locale);
         return (
-          <li key={client.name} className="client-card" data-tilt="6" data-glow>
+          <li
+            key={client.name}
+            className="client-card"
+            data-tilt="6"
+            data-glow
+            style={{ "--tint": client.tint } as CSSProperties}
+          >
             <Plate client={client} sizes="(min-width: 60rem) 220px, calc(100vw - 6rem)" />
             <div className="client-card__body">
               <p className="client-card__sector">{t(client.sector, locale)}</p>

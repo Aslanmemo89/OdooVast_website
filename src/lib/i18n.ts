@@ -64,9 +64,13 @@ export const localeShort: Record<Locale, string> = {
   ckb: "کوردی",
 };
 
-/** Replaces {token} placeholders — used by the WhatsApp message templates. */
-export const fill = (template: string, vars: Record<string, string>): string =>
-  template.replace(/\{(\w+)\}/g, (_match, key: string) => vars[key] ?? "");
+/**
+ * Replaces {token} placeholders — used by the WhatsApp message templates and
+ * the pricing copy. A token with no value is dropped, or with `keep` left in
+ * place for a later fill.
+ */
+export const fill = (template: string, vars: Record<string, string>, keep = false): string =>
+  template.replace(/\{(\w+)\}/g, (match, key: string) => vars[key] ?? (keep ? match : ""));
 
 /**
  * A counted phrase, one string per CLDR plural category; "#" becomes the
@@ -82,16 +86,89 @@ export type TPlural = {
 const EASTERN_DIGITS = "٠١٢٣٤٥٦٧٨٩";
 
 /** Sorani copy on this site writes numbers in Eastern Arabic digits (١٢ لاپەڕە). */
-export const num = (n: number, locale: Locale): string =>
-  locale === "ckb"
-    ? String(n).replace(/\d/g, (d) => EASTERN_DIGITS[Number(d)] ?? d)
-    : String(n);
+export const digits = (text: string, locale: Locale): string =>
+  locale === "ckb" ? text.replace(/\d/g, (d) => EASTERN_DIGITS[Number(d)] ?? d) : text;
+
+export const num = (n: number, locale: Locale): string => digits(String(n), locale);
+
+const GROUPED = new Intl.NumberFormat("en-US");
+
+/** A number with thousands separated — "4,096" or "٤,٠٩٦". */
+export const grouped = (n: number, locale: Locale): string => digits(GROUPED.format(n), locale);
+
+const USD = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+/** "$1,234.50" in the language's digits, with no direction marks — for building markup from. */
+export const usdText = (amount: number, locale: Locale): string =>
+  digits(USD.format(amount), locale);
+
+/**
+ * A price in US dollars, held left-to-right (U+2066 … U+2069) so the "$"
+ * stays on the left of the number in every language, as on Odoo's pages.
+ * Without the isolate, Eastern Arabic digits leave the "$" to the
+ * surrounding right-to-left text, which puts it on the far side.
+ */
+export const usd = (amount: number, locale: Locale): string => `\u2066${usdText(amount, locale)}\u2069`;
+
+/**
+ * One language's strings out of a set of T. A client component is handed
+ * this instead of the set, so it ships the language it shows and no other.
+ * `vars` fills the {tokens} known now and leaves the rest for the component.
+ */
+export function pick<K extends string>(
+  set: Record<K, T>,
+  locale: Locale,
+  vars: Record<string, string> = {},
+): Record<K, string> {
+  const out = {} as Record<K, string>;
+  for (const key of Object.keys(set) as K[]) out[key] = fill(set[key][locale], vars, true);
+  return out;
+}
 
 export function tn(forms: TPlural, n: number, locale: Locale): string {
   const category = new Intl.PluralRules(htmlLang[locale]).select(n);
   const set: Record<string, string> = forms[locale];
   return (set[category] ?? set.other ?? "").replace("#", num(n, locale));
 }
+
+/**
+ * Labels under a big figure (the number itself is drawn above them), in the
+ * form each language uses after that number.
+ */
+export const figureLabels = {
+  companies: {
+    en: { one: "company", other: "companies" },
+    ar: { one: "شركة", two: "شركتان", few: "شركات", many: "شركة", other: "شركة" },
+    ckb: { one: "کۆمپانیا", other: "کۆمپانیا" },
+  },
+  citiesInIraq: {
+    en: { one: "city in Iraq", other: "cities in Iraq" },
+    ar: {
+      one: "مدينة في العراق",
+      two: "مدينتان في العراق",
+      few: "مدن في العراق",
+      many: "مدينة في العراق",
+      other: "مدينة في العراق",
+    },
+    ckb: { one: "شار لە عێراق", other: "شار لە عێراق" },
+  },
+  countriesAbroad: {
+    en: { one: "country abroad", other: "countries abroad" },
+    ar: {
+      one: "بلد خارج العراق",
+      two: "بلدان خارج العراق",
+      few: "بلدان خارج العراق",
+      many: "بلداً خارج العراق",
+      other: "بلد خارج العراق",
+    },
+    ckb: { one: "وڵات لە دەرەوە", other: "وڵات لە دەرەوە" },
+  },
+} satisfies Record<string, TPlural>;
 
 /** Counted labels on the client cards. */
 export const counts = {
@@ -144,6 +221,7 @@ export const ui = {
   navServices: { en: "Services", ar: "خدماتنا", ckb: "خزمەتگوزارییەکان" },
   navIndustries: { en: "Industries", ar: "القطاعات", ckb: "کەرتەکان" },
   navPortfolio: { en: "Portfolio", ar: "أعمالنا", ckb: "کارەکانمان" },
+  navPricing: { en: "Pricing", ar: "الأسعار", ckb: "نرخەکان" },
   navContact: { en: "Contact", ar: "اتصل بنا", ckb: "پەیوەندی" },
 
   ctaWhatsApp: { en: "Chat on WhatsApp", ar: "تواصل عبر واتساب", ckb: "لە واتسئاپ قسە بکە" },

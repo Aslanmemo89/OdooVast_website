@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ClientGrid, clientSummary } from "@/components/ClientLogos";
+import { ClientFigures, ClientGrid } from "@/components/ClientLogos";
 import { CtaBand } from "@/components/CtaBand";
 import { Icon } from "@/components/Icon";
 import { PageHead } from "@/components/PageHead";
@@ -27,7 +27,7 @@ export default function PortfolioPage({ params }: Props) {
       <Section labelledBy="clients">
         <div className="section__head">
           <h2 id="clients">{t(portfolioPage.clientsTitle, locale)}</h2>
-          <p className="section__lead">{clientSummary(locale)}</p>
+          <ClientFigures locale={locale} />
         </div>
         <Reveal>
           <ClientGrid locale={locale} />

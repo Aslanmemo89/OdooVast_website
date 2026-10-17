@@ -291,6 +291,41 @@ const glyphs = {
       </>
     ),
   },
+  user: {
+    body: (
+      <>
+        <circle cx="12" cy="8" r="3.75" />
+        <path d="M4.75 20.25a7.25 7.25 0 0 1 14.5 0" />
+      </>
+    ),
+  },
+  /* The same person with the body only dotted in: someone who uses a corner of Odoo. */
+  lightUser: {
+    body: (
+      <>
+        <circle cx="12" cy="8" r="3.75" />
+        <path d="M4.75 20.25a7.25 7.25 0 0 1 14.5 0" strokeDasharray="0.01 3.3" strokeWidth={2.2} />
+      </>
+    ),
+  },
+  cloud: {
+    body: (
+      <path d="M7.4 19h9.85a4.25 4.25 0 0 0 .45-8.48 5.75 5.75 0 0 0-11.15 1.4A3.55 3.55 0 0 0 7.4 19Z" />
+    ),
+  },
+  server: {
+    body: (
+      <>
+        <rect x="3.5" y="3.75" width="17" height="7" rx="1.8" />
+        <rect x="3.5" y="13.25" width="17" height="7" rx="1.8" />
+        <path d="M7 7.25h.01M7 16.75h.01M10.75 7.25h6M10.75 16.75h6" />
+      </>
+    ),
+  },
+  plus: { body: <path d="M12 5v14M5 12h14" /> },
+  minus: { body: <path d="M5 12h14" /> },
+  cross: { body: <path d="m7 7 10 10M17 7 7 17" /> },
+  chevron: { body: <path d="m6 9.5 6 6 6-6" /> },
 
   /* -------------------------------------------------------------- social */
   whatsapp: {

@@ -12,6 +12,19 @@ import { waGeneral } from "@/lib/whatsapp";
 /** `--d` staggers each block of the entrance after the heading. */
 const step = (d: number) => ({ "--d": d }) as CSSProperties;
 
+/** The heading with its key words drawn in light; plain text if they are not found. */
+function Accented({ text, accent }: { text: string; accent: string }) {
+  const at = text.indexOf(accent);
+  if (at < 0) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, at)}
+      <span className="hero__accent">{accent}</span>
+      {text.slice(at + accent.length)}
+    </>
+  );
+}
+
 export function Hero({ locale }: { locale: Locale }) {
   return (
     <section className="hero" data-spotlight>
@@ -25,8 +38,11 @@ export function Hero({ locale }: { locale: Locale }) {
 
           {/* One block, not a box per word: when the web font arrives and the
               heading re-wraps, separate word boxes would jump between lines and
-              register as a large layout shift. */}
-          <h1 className="hero__title">{t(home.h1, locale)}</h1>
+              register as a large layout shift. The accent is an inline span,
+              which wraps with the text. */}
+          <h1 className="hero__title">
+            <Accented text={t(home.h1, locale)} accent={t(home.h1Accent, locale)} />
+          </h1>
           <p className="hero__lead hero__enter" style={step(3)}>
             {t(home.lead, locale)}
           </p>
@@ -61,7 +77,7 @@ export function Hero({ locale }: { locale: Locale }) {
         <div className="hero__visual">
           <HeroScene core={<Mark3D className="scene__mark" />}>
             {home.orbit.map((app) => (
-              <span key={app.label} className="orbit-chip" data-orbit>
+              <span key={app.label} className="orbit-chip" data-orbit={app.icon}>
                 <Icon name={app.icon} size={16} />
                 {app.label}
               </span>

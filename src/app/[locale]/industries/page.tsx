@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { CtaBand } from "@/components/CtaBand";
+import { Cube } from "@/components/Cube";
 import { Icon } from "@/components/Icon";
 import { PageHead } from "@/components/PageHead";
 import { PageShell } from "@/components/PageShell";
@@ -30,9 +31,7 @@ export default function IndustriesPage({ params }: Props) {
           <Reveal key={industry.slug}>
             <article className="service" id={industry.slug}>
               <div className="service__aside">
-                <span className="card__icon" aria-hidden="true">
-                  <Icon name={industry.icon} size={22} />
-                </span>
+                <Cube icon={industry.icon} />
                 <h2>{t(industry.title, locale)}</h2>
                 <ul className="chips">
                   {industry.modules.map((module) => (

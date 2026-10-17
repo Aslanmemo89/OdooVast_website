@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { CtaBand } from "@/components/CtaBand";
+import { Cube } from "@/components/Cube";
 import { Icon } from "@/components/Icon";
 import { PageHead } from "@/components/PageHead";
 import { PageShell } from "@/components/PageShell";
@@ -30,9 +31,7 @@ export default function ServicesPage({ params }: Props) {
           <Reveal key={service.slug}>
             <article className="service" id={service.slug}>
               <div className="service__aside">
-                <span className="card__icon" aria-hidden="true">
-                  <Icon name={service.icon} size={22} />
-                </span>
+                <Cube icon={service.icon} />
                 <h2>{t(service.title, locale)}</h2>
                 <a
                   className="btn btn--whatsapp"

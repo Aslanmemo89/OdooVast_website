@@ -12,20 +12,28 @@ const NAV: { key: PageKey; label: T }[] = [
   { key: "services", label: ui.navServices },
   { key: "industries", label: ui.navIndustries },
   { key: "portfolio", label: ui.navPortfolio },
+  { key: "pricing", label: ui.navPricing },
   { key: "contact", label: ui.navContact },
 ];
 
 export function Header({ locale, current }: { locale: Locale; current: PageKey }) {
   return (
     <>
-      <a className="skip" href="#main">
-        {t(ui.srSkipToContent, locale)}
-      </a>
-
+      {/* The skip link sits inside the sticky header on purpose. After each
+          page change Next.js focuses the first element of the new page that
+          is not sticky or fixed; as the page's first element of its own, the
+          skip link took that focus and showed itself after every click. */}
       <header className="header">
+        <a className="skip" href="#main">
+          {t(ui.srSkipToContent, locale)}
+        </a>
         <span className="header__progress" aria-hidden="true" />
         <div className="container header__inner">
-          <Link href={href(locale, "home")} className="brand">
+          <Link
+            href={href(locale, "home")}
+            className="brand"
+            aria-current={current === "home" ? "page" : undefined}
+          >
             {/* Decorative: the wordmark beside it already names the company. */}
             <Image
               src="/brand/mark.png"
@@ -45,8 +53,11 @@ export function Header({ locale, current }: { locale: Locale; current: PageKey }
           </Link>
 
           <nav className="nav" aria-label={t(ui.srMenu, locale)}>
+            {/* The brand already leads home, so the bar leaves Home out — with
+                Pricing added, seven Kurdish labels no longer fit beside the
+                switcher. The menu panel below and the footer keep it. */}
             <ul className="nav__list">
-              {NAV.map((item) => (
+              {NAV.filter((item) => item.key !== "home").map((item) => (
                 <li key={item.key}>
                   <Link
                     href={href(locale, item.key)}

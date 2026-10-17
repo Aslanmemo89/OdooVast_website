@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Icon, type IconName } from "@/components/Icon";
 import { company } from "@/content/company";
 import { href, type PageKey } from "@/content/pages";
-import { t, ui, type Locale, type T } from "@/lib/i18n";
+import { num, t, ui, type Locale, type T } from "@/lib/i18n";
 
 const NAV: { key: PageKey; label: T }[] = [
   { key: "home", label: ui.navHome },
@@ -12,6 +12,7 @@ const NAV: { key: PageKey; label: T }[] = [
   { key: "services", label: ui.navServices },
   { key: "industries", label: ui.navIndustries },
   { key: "portfolio", label: ui.navPortfolio },
+  { key: "pricing", label: ui.navPricing },
   { key: "contact", label: ui.navContact },
 ];
 
@@ -34,6 +35,7 @@ export function Footer({ locale }: { locale: Locale }) {
 
   return (
     <footer className="footer" data-spotlight>
+      <div className="floor" aria-hidden="true" />
       <div className="container">
         <div className="footer__grid">
           <div>
@@ -109,7 +111,7 @@ export function Footer({ locale }: { locale: Locale }) {
 
         <div className="footer__bar">
           <p>
-            © <span className="ltr">{year}</span> OdooVast. {t(ui.footerRights, locale)}
+            © <span className="ltr">{num(year, locale)}</span> OdooVast. {t(ui.footerRights, locale)}
           </p>
 
           <nav className="footer__legal" aria-label={t(ui.footerLegal, locale)}>

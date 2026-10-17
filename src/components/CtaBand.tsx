@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 
 import { Icon, type IconName } from "@/components/Icon";
+import { Mark3D } from "@/components/Mark3D";
 import { href } from "@/content/pages";
 import { t, ui, type Locale, type T } from "@/lib/i18n";
 import { waAbout, waGeneral } from "@/lib/whatsapp";
@@ -32,6 +33,8 @@ export function CtaBand({
 }) {
   return (
     <div className="cta" data-tilt="4">
+      {/* The mark, large and faint, set back in depth behind the words. */}
+      <Mark3D className="cta__mark" />
       {FLOATS.map((float) => (
         <span key={float.icon} className="cta__float" style={float.at} aria-hidden="true">
           <Icon name={float.icon} size={22} />

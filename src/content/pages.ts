@@ -9,6 +9,7 @@ export const pageKeys = [
   "services",
   "industries",
   "portfolio",
+  "pricing",
   "contact",
   "privacy",
   "terms",
@@ -36,6 +37,7 @@ export const pagePath: Record<PageKey, string> = {
   services: "/services",
   industries: "/industries",
   portfolio: "/portfolio",
+  pricing: "/pricing",
   contact: "/contact",
   privacy: "/privacy",
   terms: "/terms",
@@ -108,8 +110,22 @@ export const pageMeta: Record<PageKey, PageMeta> = {
     },
     description: {
       en: "Companies running Odoo with OdooVast — Alnajar Steel, Salar Jamal, Retal, Vendor for General Trading, Merry An, Som, Brix Burger, Diamond Parda Company and Aljawahir. Detailed case studies are on the way.",
-      ar: "شركات تدير أعمالها بنظام Odoo مع OdooVast — Alnajar Steel وSalar Jamal وRetal وVendor للتجارة العامة وMerry An وSom وBrix Burger وDiamond Parda وAljawahir. دراسات الحالة التفصيلية قريباً.",
-      ckb: "ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast — Alnajar Steel، Salar Jamal، Retal، Vendor، Merry An، Som، Brix Burger، Diamond Parda و Aljawahir. نموونە پڕۆژە وردەکان لە ڕێگادان.",
+      ar: "شركات تدير أعمالها بنظام Odoo مع OdooVast\u200F — Alnajar Steel وSalar Jamal وRetal وVendor للتجارة العامة وMerry An وSom وBrix Burger وDiamond Parda وAljawahir. دراسات الحالة التفصيلية قريباً.",
+      // U+200F after each comma: Latin names joined only by commas would
+      // otherwise run together left to right, the commas with them.
+      ckb: "ئەو کۆمپانیایانەی بە Odoo کار دەکەن لەگەڵ OdooVast\u200F — Alnajar Steel،\u200F Salar Jamal،\u200F Retal،\u200F Vendor،\u200F Merry An،\u200F Som،\u200F Brix Burger،\u200F Diamond Parda و Aljawahir. نموونە پڕۆژە وردەکان لە ڕێگادان.",
+    },
+  },
+  pricing: {
+    title: {
+      en: "Odoo Pricing in Iraq — plans, Light Users and Odoo.sh hosting",
+      ar: "أسعار Odoo في العراق — الخطط والمستخدم الخفيف واستضافة Odoo.sh",
+      ckb: "نرخەکانی Odoo لە عێراق — پلانەکان، لایت یوزەر و هۆستینگی Odoo.sh",
+    },
+    description: {
+      en: "What Odoo costs in Iraq: the One App Free, Standard and Custom plans, Light Users and Odoo.sh hosting, side by side — and a calculator for your own numbers. Odoo's official prices in US dollars.",
+      ar: "كم يكلّف Odoo في العراق: خطط التطبيق الواحد المجاني والقياسية والمخصّصة، والمستخدم الخفيف، واستضافة Odoo.sh جنباً إلى جنب — مع حاسبة لأرقامك. أسعار Odoo الرسمية بالدولار الأمريكي.",
+      ckb: "Odoo لە عێراق چەندی تێدەچێت: پلانەکانی یەک ئەپی خۆڕایی، ستاندارد و تایبەت، لایت یوزەر و هۆستینگی Odoo.sh لە تەنیشت یەکتر — لەگەڵ ژمێرەرێک بۆ ژمارەکانی خۆت. نرخە فەرمییەکانی Odoo بە دۆلاری ئەمریکی.",
     },
   },
   contact: {
@@ -119,9 +135,9 @@ export const pageMeta: Record<PageKey, PageMeta> = {
       ckb: "پەیوەندی بە OdooVast — هەولێر، عێراق",
     },
     description: {
-      en: "Phone, WhatsApp, email and office address for OdooVast in Erbil, Iraq. Open 24/7. Get in touch for a free consultation.",
-      ar: "الهاتف وواتساب والبريد الإلكتروني وعنوان مكتب OdooVast في أربيل، العراق. مفتوح على مدار الساعة. تواصل معنا لاستشارة مجانية.",
-      ckb: "تەلەفۆن، واتسئاپ، ئیمەیڵ و ناونیشانی نووسینگەی OdooVast لە هەولێری عێراق. ٢٤/٧ کراوەیە. بۆ ڕاوێژکاری خۆڕایی پەیوەندیمان پێوە بکە.",
+      en: "Phone, WhatsApp, email and office address for OdooVast in Erbil, Iraq. Open Saturday to Thursday. Get in touch for a free consultation.",
+      ar: "الهاتف وواتساب والبريد الإلكتروني وعنوان مكتب OdooVast في أربيل، العراق. مفتوح من السبت إلى الخميس. تواصل معنا لاستشارة مجانية.",
+      ckb: "تەلەفۆن، واتسئاپ، ئیمەیڵ و ناونیشانی نووسینگەی OdooVast لە هەولێری عێراق. شەممە تا پێنجشەممە کراوەیە. بۆ ڕاوێژکاری خۆڕایی پەیوەندیمان پێوە بکە.",
     },
   },
   privacy: {
@@ -177,6 +193,12 @@ export const home = {
     ar: "أدِر شركتك بالكامل على نظام واحد.",
     ckb: "هەموو کۆمپانیاکەت لەسەر یەک سیستەم بەڕێوە ببە.",
   } satisfies T,
+  /** The words of the heading drawn in light. Must appear verbatim in `h1`. */
+  h1Accent: {
+    en: "one system",
+    ar: "نظام واحد",
+    ckb: "یەک سیستەم",
+  } satisfies T,
   lead: {
     en: "OdooVast implements, customises and supports Odoo ERP for businesses in Iraq — from the shop floor to the balance sheet. The first consultation is free.",
     ar: "تطبّق OdooVast نظام Odoo ERP وتخصّصه وتدعمه للشركات في العراق — من أرض المصنع إلى الميزانية العمومية. الاستشارة الأولى مجانية.",
@@ -222,11 +244,16 @@ export const home = {
     },
     {
       icon: "support",
-      title: { en: "24/7 support", ar: "دعم 24/7", ckb: "پشتگیری ٢٤/٧" },
+      // Owner, 2026-10-17: Saturday to Thursday (this used to say 24/7).
+      title: {
+        en: "Support six days a week",
+        ar: "دعم ستة أيام في الأسبوع",
+        ckb: "پشتگیری شەش ڕۆژ لە هەفتەدا",
+      },
       body: {
-        en: "Production does not stop at five o'clock, so neither do we. Reach us any hour, any day.",
-        ar: "الإنتاج لا يتوقف الساعة الخامسة، ونحن كذلك. تواصل معنا في أي ساعة وأي يوم.",
-        ckb: "بەرهەمهێنان لە کاتژمێر پێنج ناوەستێت، ئێمەش هەروەها. لە هەر کاتژمێرێک و هەر ڕۆژێک پەیوەندیمان پێوە بکە.",
+        en: "Saturday to Thursday, in Kurdish, Arabic or English — by phone, WhatsApp or email.",
+        ar: "من السبت إلى الخميس، بالكردية أو العربية أو الإنجليزية — عبر الهاتف أو واتساب أو البريد الإلكتروني.",
+        ckb: "شەممە تا پێنجشەممە، بە کوردی، عەرەبی یان ئینگلیزی — بە تەلەفۆن، واتسئاپ یان ئیمەیڵ.",
       },
     },
     {

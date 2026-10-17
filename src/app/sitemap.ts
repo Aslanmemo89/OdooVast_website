@@ -4,7 +4,7 @@ import { company } from "@/content/company";
 import { href, isLegalKey, pageKeys } from "@/content/pages";
 import { hreflang, locales } from "@/lib/i18n";
 
-/** All 27 routes, each carrying its hreflang alternates. */
+/** All 30 routes, each carrying its hreflang alternates. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 

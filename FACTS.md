@@ -31,7 +31,11 @@ Lines marked `TODO:` are **not** confirmed — fill them in or ask before using.
 page owner can open. Visitors get a permission error.
 `TODO: the public LinkedIn company URL`
 
-`TODO: working hours`
+**Working days — confirmed by the owner on 2026-10-17: Saturday to Thursday.**
+This replaces the "Open 24 hours, 7 days a week" taken from the old site;
+nothing on the site says 24/7 any more. `TODO: the hours of the day` — until
+they are known, the JSON-LD carries no `openingHours` (days alone would tell
+Google the office is open all day).
 `TODO: Google Maps embed link`
 `TODO: Facebook / Instagram, if any`
 
@@ -78,7 +82,7 @@ publishing to the app stores) before relying on the services-page lines.
 
 - Certified Odoo Partner
 - Expert team
-- 24/7 support
+- Support Saturday to Thursday (owner, 2026-10-17 — the old site said 24/7)
 - Proven results
 - Enterprise excellence
 
@@ -119,3 +123,31 @@ what the owner said. **Never invent a client.**
 
 Case studies (scope, modules, results) are still unwritten — publish them
 only with each client's written approval.
+
+## Odoo prices — Odoo's, not OdooVast's
+
+The pricing page (`/pricing`) shows **Odoo's** published prices, copied on
+2026-10-16 from odoo.com/pricing and odoo.sh/pricing as they appear to a
+visitor in Iraq (Odoo prices by country; the page reported
+`geoip_country_code: "IQ"`), in US dollars. All figures live in
+`src/content/pricing.ts` → `rates`.
+
+| | Billed yearly | Billed monthly |
+|---|---|---|
+| One App Free | $0 | $0 |
+| Standard, per user / month | $7.25 (regular $8.95) | $9.10 (regular $11.20) |
+| Custom, per user / month | $13.40 (regular $16.40) | $16.90 (regular $20.90) |
+| Light User, per user / month | $2.90 | $2.90 |
+| Odoo.sh worker / month | $57.60 | $72.00 |
+| Odoo.sh storage, per GB / month | $0.20 | $0.25 |
+| Odoo.sh dedicated server / month | $480.00 | $600.00 |
+| Odoo.sh staging environment / month | $14.40 | $18.00 |
+
+- The lower licence price is a discount for the first 12 months on the
+  users ordered at the start.
+- Odoo.sh limits: shared 1–16 workers, 1–512 GB; dedicated 8–256 workers,
+  up to 4096 GB; 0–20 staging environments. Odoo's sizing advice: one more
+  worker per 25 users and per 5,000 website visitors a day; 1 GB per user.
+- Light User licences are arranged through an Odoo advisor (customised quote).
+- OdooVast's own implementation prices are **not** published — they are
+  quoted after the free consultation. Do not add any.

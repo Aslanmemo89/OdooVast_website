@@ -28,7 +28,8 @@ export const company = {
   } satisfies T,
   tagline: {
     en: "Implement · Customize · Automate · Grow",
-    ar: "التطبيق · التخصيص · الأتمتة · النمو",
+    // التنفيذ, not التطبيق: beside the apps, التطبيق reads as "the app".
+    ar: "التنفيذ · التخصيص · الأتمتة · النمو",
     ckb: "جێبەجێکردن · تایبەتمەندکردن · ئۆتۆماتیککردن · گەشەکردن",
   } satisfies T,
 
@@ -68,13 +69,17 @@ export const company = {
     countryCode: "IQ",
   },
 
+  /** Owner, 2026-10-17: Saturday to Thursday. The hours of the day are not confirmed yet. */
   hours: {
-    en: "Open 24 hours, 7 days a week",
-    ar: "مفتوح 24 ساعة، 7 أيام في الأسبوع",
-    ckb: "٢٤ کاتژمێر کراوەیە، ٧ ڕۆژی هەفتە",
+    en: "Open Saturday to Thursday",
+    ar: "مفتوح من السبت إلى الخميس",
+    ckb: "شەممە تا پێنجشەممە کراوەیە",
   } satisfies T,
-  /** schema.org openingHours — 24/7. */
-  hoursSchema: "Mo-Su 00:00-23:59",
+  /**
+   * schema.org openingHours. null until the hours of the day are confirmed:
+   * days alone ("Sa-Th") would tell Google the office is open all day.
+   */
+  hoursSchema: null as string | null,
 
   maps: {
     /** Keyless Google Maps embed, resolved from the address above.
