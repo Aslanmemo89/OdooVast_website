@@ -121,6 +121,7 @@ what the owner said. **Never invent a client.**
 | Al-Sharyan Scientific Office | Distributes pharmaceutical products | Baghdad |
 | Med Cell — **not on the site yet** | Distributes pharmaceutical products | Erbil, Duhok, Sulaymaniyah |
 | Mustadaama Global Markets (MGM) | "Trade Forex, metals, indices, and shares with a regulated broker" | not given |
+| Verona Fashion | Clothing | Baghdad |
 
 - "دیری مۆند" (Derimod clothing), as the owner described it, is Vendor for
   General Trading — confirmed by the owner on 2026-10-17.

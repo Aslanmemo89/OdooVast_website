@@ -3,8 +3,8 @@ import type { T } from "@/lib/i18n";
 /**
  * Real OdooVast clients, supplied by the owner — the first six on 2026-08-14,
  * Merry An, Retal and Brix Burger plus every city and branch figure on
- * 2026-10-15, Bio Guard, Al-Sharyan Scientific Office and Mustadaama Global
- * Markets on 2026-11-25. Logos live in public/clients/. Company names stay in their own
+ * 2026-10-15, Bio Guard, Al-Sharyan Scientific Office, Mustadaama Global
+ * Markets and Verona Fashion on 2026-11-25. Logos live in public/clients/. Company names stay in their own
  * branding (Latin) in all three languages; everything else is translated.
  *
  * Only what the owner stated is recorded. A branch without a `count` means
@@ -296,6 +296,24 @@ export const clients: Client[] = [
     tint: "#089898",
     width: 235,
     height: 115,
+  },
+  {
+    name: "Verona Fashion",
+    sector: {
+      en: "Fashion & apparel",
+      ar: "الأزياء والملابس",
+      ckb: "جل و بەرگ",
+    },
+    about: {
+      en: "Works in the clothing business.",
+      ar: "تعمل في مجال الملابس.",
+      ckb: "کار لە بواری جل و بەرگدا دەکات.",
+    },
+    branches: [{ place: "baghdad" }],
+    logo: "/clients/verona-fashion.jpg",
+    tint: "#f81878",
+    width: 850,
+    height: 894,
   },
 ];
 
