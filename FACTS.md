@@ -119,7 +119,7 @@ what the owner said. **Never invent a client.**
 | Aljawahir | Iron | 1 branch |
 | Bio Guard | Sports supplements such as protein, and sportswear | Baghdad, Erbil |
 | Al-Sharyan Scientific Office | Distributes pharmaceutical products | Baghdad |
-| Med Cell — **not on the site yet** | Distributes pharmaceutical products | Erbil, Duhok, Sulaymaniyah |
+| Medicell Company | Distributes pharmaceutical products | Erbil, Duhok, Sulaymaniyah |
 | Mustadaama Global Markets (MGM) | "Trade Forex, metals, indices, and shares with a regulated broker" | not given |
 | Verona Fashion | Clothing | Baghdad |
 
@@ -127,12 +127,9 @@ what the owner said. **Never invent a client.**
   General Trading — confirmed by the owner on 2026-10-17.
 - `TODO:` "کۆسەرە" (one of Retal's machines) is kept in the Kurdish text
   only; the English and Arabic say "machines such as saws". Confirm the term.
-- Al-Sharyan and Med Cell are two separate companies (owner, 2026-11-25).
-  Al-Sharyan is named as on its logo.
-- `TODO:` Med Cell is a confirmed client but stays off the site until its
-  logo arrives — the logo wall shows logos only, and "Med Cell" is just our
-  spelling of the owner's «مید سیل». Add it to `src/content/clients.ts`
-  with Erbil, Duhok and Sulaymaniyah (Sulaymaniyah needs adding to `places`).
+- Al-Sharyan and Medicell are two separate companies (owner, 2026-11-25).
+  Both are named as on their logos; Medicell's reads "Medicell Company LTD."
+  (the owner first wrote it «مید سیل»).
 - MGM's "regulated broker" is the broker's own claim; the site says only
   "a broker", since OdooVast cannot vouch for its regulation.
 

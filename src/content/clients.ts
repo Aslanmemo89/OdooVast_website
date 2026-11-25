@@ -4,7 +4,8 @@ import type { T } from "@/lib/i18n";
  * Real OdooVast clients, supplied by the owner — the first six on 2026-08-14,
  * Merry An, Retal and Brix Burger plus every city and branch figure on
  * 2026-10-15, Bio Guard, Al-Sharyan Scientific Office, Mustadaama Global
- * Markets and Verona Fashion on 2026-11-25. Logos live in public/clients/. Company names stay in their own
+ * Markets, Verona Fashion and Medicell on 2026-11-25. Logos live in
+ * public/clients/. Company names stay in their own
  * branding (Latin) in all three languages; everything else is translated.
  *
  * Only what the owner stated is recorded. A branch without a `count` means
@@ -17,6 +18,7 @@ export const places = {
   baghdad: { en: "Baghdad", ar: "بغداد", ckb: "بەغدا" },
   mosul: { en: "Mosul", ar: "الموصل", ckb: "مووسڵ" },
   duhok: { en: "Duhok", ar: "دهوك", ckb: "دهۆک" },
+  sulaymaniyah: { en: "Sulaymaniyah", ar: "السليمانية", ckb: "سلێمانی" },
   turkey: { en: "Turkey", ar: "تركيا", ckb: "تورکیا" },
   syria: { en: "Syria", ar: "سوريا", ckb: "سووریا" },
   china: { en: "China", ar: "الصين", ckb: "چین" },
@@ -256,8 +258,8 @@ export const clients: Client[] = [
     height: 900,
   },
   {
-    /* Named as on its logo. A separate company from Med Cell (owner,
-       2026-11-25), which is not listed yet — see FACTS.md. */
+    /* Named as on its logo. A separate company from Medicell (owner,
+       2026-11-25). */
     name: "Al-Sharyan Scientific Office",
     sector: {
       en: "Pharmaceutical distribution",
@@ -314,6 +316,26 @@ export const clients: Client[] = [
     tint: "#f81878",
     width: 850,
     height: 894,
+  },
+  {
+    /* The logo reads "Medicell Company LTD."; the owner first wrote it
+       «مید سیل». The supplied file is small (180 × 148). */
+    name: "Medicell Company",
+    sector: {
+      en: "Pharmaceutical distribution",
+      ar: "توزيع الأدوية",
+      ckb: "دابەشکردنی دەرمان",
+    },
+    about: {
+      en: "Distributes pharmaceutical products.",
+      ar: "توزيع المواد الدوائية.",
+      ckb: "دابەشکردنی ماددەی دەرمان.",
+    },
+    branches: [{ place: "erbil" }, { place: "duhok" }, { place: "sulaymaniyah" }],
+    logo: "/clients/medicell.png",
+    tint: "#085898",
+    width: 167,
+    height: 144,
   },
 ];
 
