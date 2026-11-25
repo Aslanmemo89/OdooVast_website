@@ -3,7 +3,8 @@ import type { T } from "@/lib/i18n";
 /**
  * Real OdooVast clients, supplied by the owner — the first six on 2026-08-14,
  * Merry An, Retal and Brix Burger plus every city and branch figure on
- * 2026-10-15. Logos live in public/clients/. Company names stay in their own
+ * 2026-10-15, Bio Guard, Al-Sharyan & Med Cell and Mustadaama Global Markets
+ * on 2026-11-25. Logos live in public/clients/. Company names stay in their own
  * branding (Latin) in all three languages; everything else is translated.
  *
  * Only what the owner stated is recorded. A branch without a `count` means
@@ -16,6 +17,7 @@ export const places = {
   baghdad: { en: "Baghdad", ar: "بغداد", ckb: "بەغدا" },
   mosul: { en: "Mosul", ar: "الموصل", ckb: "مووسڵ" },
   duhok: { en: "Duhok", ar: "دهوك", ckb: "دهۆک" },
+  sulaymaniyah: { en: "Sulaymaniyah", ar: "السليمانية", ckb: "سلێمانی" },
   turkey: { en: "Turkey", ar: "تركيا", ckb: "تورکیا" },
   syria: { en: "Syria", ar: "سوريا", ckb: "سووریا" },
   china: { en: "China", ar: "الصين", ckb: "چین" },
@@ -235,6 +237,68 @@ export const clients: Client[] = [
     tint: "#f5a524",
     width: 1950,
     height: 1436,
+  },
+  {
+    name: "Bio Guard",
+    sector: {
+      en: "Sports nutrition & sportswear",
+      ar: "المكمّلات والملابس الرياضية",
+      ckb: "خۆراکی وەرزشی و جلی وەرزشی",
+    },
+    about: {
+      en: "Sells sports supplements such as protein, and sportswear.",
+      ar: "بيع المكمّلات الرياضية كالبروتين، والملابس الرياضية.",
+      ckb: "فرۆشتنی ماددەی وەرزشی وەک پرۆتین، و جل و بەرگی وەرزشی.",
+    },
+    branches: [{ place: "baghdad" }, { place: "erbil" }],
+    logo: "/clients/bio-guard.jpg",
+    tint: "#189848",
+    width: 657,
+    height: 900,
+  },
+  {
+    /* The owner's words: the two distribute medicines — Al-Sharyan in Baghdad,
+       Med Cell in Erbil, Duhok and Sulaymaniyah. Only Al-Sharyan's logo was
+       supplied. TODO: confirm the spelling "Med Cell" (the owner wrote
+       «مید سیل») and ask for its logo. */
+    name: "Al-Sharyan & Med Cell",
+    sector: {
+      en: "Pharmaceutical distribution",
+      ar: "توزيع الأدوية",
+      ckb: "دابەشکردنی دەرمان",
+    },
+    about: {
+      en: "Distribute pharmaceutical products — as Al-Sharyan in Baghdad, and as Med Cell in Erbil, Duhok and Sulaymaniyah.",
+      ar: "توزيع المواد الدوائية — باسم Al-Sharyan في بغداد، وباسم Med Cell في أربيل ودهوك والسليمانية.",
+      ckb: "دابەشکردنی ماددەی دەرمان — بە ناوی Al-Sharyan لە بەغدا، و بە ناوی Med Cell لە هەولێر، دهۆک و سلێمانی.",
+    },
+    branches: [{ place: "baghdad" }, { place: "erbil" }, { place: "duhok" }, { place: "sulaymaniyah" }],
+    logo: "/clients/al-sharyan.png",
+    tint: "#085878",
+    width: 686,
+    height: 779,
+  },
+  {
+    /* The owner gave MGM's own line, "Trade Forex, metals, indices, and shares
+       with a regulated broker". "Regulated" is left out: it is the broker's
+       claim about itself, not something this site can vouch for. No city
+       was given. */
+    name: "Mustadaama Global Markets",
+    sector: {
+      en: "Online trading",
+      ar: "التداول الإلكتروني",
+      ckb: "بازرگانیی ئۆنلاین",
+    },
+    about: {
+      en: "A broker for trading forex, metals, indices and shares.",
+      ar: "وسيط لتداول العملات الأجنبية (الفوركس) والمعادن والمؤشرات والأسهم.",
+      ckb: "بڕۆکەرێک بۆ مامەڵەکردن بە دراوی بیانی (فۆرێکس)، کانزا، ئیندێکس و پشک.",
+    },
+    branches: [],
+    logo: "/clients/mgm.png",
+    tint: "#089898",
+    width: 235,
+    height: 115,
   },
 ];
 

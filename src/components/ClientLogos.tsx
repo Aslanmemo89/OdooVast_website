@@ -22,7 +22,7 @@ function Plate({ client, sizes }: { client: Client; sizes: string }) {
 }
 
 /**
- * "9 companies · 4 cities in Iraq · 2 countries abroad", counted from the
+ * "12 companies · 5 cities in Iraq · 2 countries abroad", counted from the
  * list itself. Screen readers get the sentence; on screen each number is
  * drawn by CSS from `--to`, and FigureCount has it count up to that value
  * the first time it comes into view.
@@ -60,6 +60,9 @@ export function ClientFigures({ locale }: { locale: Locale }) {
  * the two never fight over one element.
  */
 export function ClientWall({ locale }: { locale: Locale }) {
+  // The invitation fills what is left of the last row, so the wall ends
+  // square at any number of clients — 2 columns on a phone, 5 wider (.wall).
+  const rest = (columns: number) => columns - (clients.length % columns);
   return (
     <ul className="wall" data-glow-group>
       {clients.map((client) => (
@@ -77,7 +80,10 @@ export function ClientWall({ locale }: { locale: Locale }) {
           </div>
         </li>
       ))}
-      <li className="wall__slot">
+      <li
+        className="wall__slot wall__slot--next"
+        style={{ "--span-sm": rest(2), "--span-lg": rest(5) } as CSSProperties}
+      >
         <div className="plaque plaque--next">
           <Link className="plaque__next" href={href(locale, "contact")} data-magnetic>
             <span className="plaque__plus" aria-hidden="true">

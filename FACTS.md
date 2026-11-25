@@ -102,8 +102,8 @@ The current site shows four figures. Only the labels came through:
 
 ## Clients — confirmed by the owner
 
-Logos supplied on 2026-08-14 and 2026-10-15; business, city and branch
-details on 2026-10-15. Recorded in `src/content/clients.ts` — nothing beyond
+Logos supplied on 2026-08-14, 2026-10-15 and 2026-11-25; business, city and
+branch details on 2026-10-15 and 2026-11-25. Recorded in `src/content/clients.ts` — nothing beyond
 what the owner said. **Never invent a client.**
 
 | Client | Business (owner's words) | Where |
@@ -117,11 +117,18 @@ what the owner said. **Never invent a client.**
 | Brix Burger | Restaurant | Erbil |
 | Diamond Parda Company | Zebra and fabric curtains | 1 branch in Erbil |
 | Aljawahir | Iron | 1 branch |
+| Bio Guard | Sports supplements such as protein, and sportswear | Baghdad, Erbil |
+| Al-Sharyan & Med Cell | Distribute pharmaceutical products — Al-Sharyan in Baghdad, Med Cell in Erbil, Duhok and Sulaymaniyah | Baghdad, Erbil, Duhok, Sulaymaniyah |
+| Mustadaama Global Markets (MGM) | "Trade Forex, metals, indices, and shares with a regulated broker" | not given |
 
 - "دیری مۆند" (Derimod clothing), as the owner described it, is Vendor for
   General Trading — confirmed by the owner on 2026-10-17.
 - `TODO:` "کۆسەرە" (one of Retal's machines) is kept in the Kurdish text
   only; the English and Arabic say "machines such as saws". Confirm the term.
+- `TODO:` "Med Cell" is our spelling of the owner's «مید سیل» — confirm it,
+  and ask for Med Cell's logo (only Al-Sharyan's was supplied).
+- MGM's "regulated broker" is the broker's own claim; the site says only
+  "a broker", since OdooVast cannot vouch for its regulation.
 
 Case studies (scope, modules, results) are still unwritten — publish them
 only with each client's written approval.

@@ -1505,6 +1505,18 @@ main {
   }
 }
 
+/* The invitation spans what the last row has left; ClientWall works it out
+   for these two column counts. */
+.wall__slot--next {
+  grid-column: span var(--span-sm, 1);
+}
+
+@media (min-width: 52rem) {
+  .wall__slot--next {
+    grid-column: span var(--span-lg, 1);
+  }
+}
+
 .plaque {
   position: relative;
   display: flex;
