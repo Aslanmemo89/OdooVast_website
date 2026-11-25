@@ -118,15 +118,20 @@ what the owner said. **Never invent a client.**
 | Diamond Parda Company | Zebra and fabric curtains | 1 branch in Erbil |
 | Aljawahir | Iron | 1 branch |
 | Bio Guard | Sports supplements such as protein, and sportswear | Baghdad, Erbil |
-| Al-Sharyan & Med Cell | Distribute pharmaceutical products — Al-Sharyan in Baghdad, Med Cell in Erbil, Duhok and Sulaymaniyah | Baghdad, Erbil, Duhok, Sulaymaniyah |
+| Al-Sharyan Scientific Office | Distributes pharmaceutical products | Baghdad |
+| Med Cell — **not on the site yet** | Distributes pharmaceutical products | Erbil, Duhok, Sulaymaniyah |
 | Mustadaama Global Markets (MGM) | "Trade Forex, metals, indices, and shares with a regulated broker" | not given |
 
 - "دیری مۆند" (Derimod clothing), as the owner described it, is Vendor for
   General Trading — confirmed by the owner on 2026-10-17.
 - `TODO:` "کۆسەرە" (one of Retal's machines) is kept in the Kurdish text
   only; the English and Arabic say "machines such as saws". Confirm the term.
-- `TODO:` "Med Cell" is our spelling of the owner's «مید سیل» — confirm it,
-  and ask for Med Cell's logo (only Al-Sharyan's was supplied).
+- Al-Sharyan and Med Cell are two separate companies (owner, 2026-11-25).
+  Al-Sharyan is named as on its logo.
+- `TODO:` Med Cell is a confirmed client but stays off the site until its
+  logo arrives — the logo wall shows logos only, and "Med Cell" is just our
+  spelling of the owner's «مید سیل». Add it to `src/content/clients.ts`
+  with Erbil, Duhok and Sulaymaniyah (Sulaymaniyah needs adding to `places`).
 - MGM's "regulated broker" is the broker's own claim; the site says only
   "a broker", since OdooVast cannot vouch for its regulation.
 

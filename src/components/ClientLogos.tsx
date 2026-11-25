@@ -22,7 +22,7 @@ function Plate({ client, sizes }: { client: Client; sizes: string }) {
 }
 
 /**
- * "12 companies · 5 cities in Iraq · 2 countries abroad", counted from the
+ * "12 companies · 4 cities in Iraq · 2 countries abroad", counted from the
  * list itself. Screen readers get the sentence; on screen each number is
  * drawn by CSS from `--to`, and FigureCount has it count up to that value
  * the first time it comes into view.

@@ -3,8 +3,8 @@ import type { T } from "@/lib/i18n";
 /**
  * Real OdooVast clients, supplied by the owner — the first six on 2026-08-14,
  * Merry An, Retal and Brix Burger plus every city and branch figure on
- * 2026-10-15, Bio Guard, Al-Sharyan & Med Cell and Mustadaama Global Markets
- * on 2026-11-25. Logos live in public/clients/. Company names stay in their own
+ * 2026-10-15, Bio Guard, Al-Sharyan Scientific Office and Mustadaama Global
+ * Markets on 2026-11-25. Logos live in public/clients/. Company names stay in their own
  * branding (Latin) in all three languages; everything else is translated.
  *
  * Only what the owner stated is recorded. A branch without a `count` means
@@ -17,7 +17,6 @@ export const places = {
   baghdad: { en: "Baghdad", ar: "بغداد", ckb: "بەغدا" },
   mosul: { en: "Mosul", ar: "الموصل", ckb: "مووسڵ" },
   duhok: { en: "Duhok", ar: "دهوك", ckb: "دهۆک" },
-  sulaymaniyah: { en: "Sulaymaniyah", ar: "السليمانية", ckb: "سلێمانی" },
   turkey: { en: "Turkey", ar: "تركيا", ckb: "تورکیا" },
   syria: { en: "Syria", ar: "سوريا", ckb: "سووریا" },
   china: { en: "China", ar: "الصين", ckb: "چین" },
@@ -257,22 +256,20 @@ export const clients: Client[] = [
     height: 900,
   },
   {
-    /* The owner's words: the two distribute medicines — Al-Sharyan in Baghdad,
-       Med Cell in Erbil, Duhok and Sulaymaniyah. Only Al-Sharyan's logo was
-       supplied. TODO: confirm the spelling "Med Cell" (the owner wrote
-       «مید سیل») and ask for its logo. */
-    name: "Al-Sharyan & Med Cell",
+    /* Named as on its logo. A separate company from Med Cell (owner,
+       2026-11-25), which is not listed yet — see FACTS.md. */
+    name: "Al-Sharyan Scientific Office",
     sector: {
       en: "Pharmaceutical distribution",
       ar: "توزيع الأدوية",
       ckb: "دابەشکردنی دەرمان",
     },
     about: {
-      en: "Distribute pharmaceutical products — as Al-Sharyan in Baghdad, and as Med Cell in Erbil, Duhok and Sulaymaniyah.",
-      ar: "توزيع المواد الدوائية — باسم Al-Sharyan في بغداد، وباسم Med Cell في أربيل ودهوك والسليمانية.",
-      ckb: "دابەشکردنی ماددەی دەرمان — بە ناوی Al-Sharyan لە بەغدا، و بە ناوی Med Cell لە هەولێر، دهۆک و سلێمانی.",
+      en: "Distributes pharmaceutical products.",
+      ar: "توزيع المواد الدوائية.",
+      ckb: "دابەشکردنی ماددەی دەرمان.",
     },
-    branches: [{ place: "baghdad" }, { place: "erbil" }, { place: "duhok" }, { place: "sulaymaniyah" }],
+    branches: [{ place: "baghdad" }],
     logo: "/clients/al-sharyan.png",
     tint: "#085878",
     width: 686,
